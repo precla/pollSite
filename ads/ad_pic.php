@@ -51,6 +51,7 @@
         <p><a href="javascript:window.close();">Natrag</a></p>
 
         <div id="ads_functions">
+            <!-- upload new ad pic -->
             <fieldset class="ad-upload-box-admin">
                 <h3>Dodavanje nove reklamne slike:</h3>
 
