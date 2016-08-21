@@ -42,7 +42,7 @@
 	</head>
 
 	<body>
-        <p><a href="./admin.php">Natrag</a></p>
+        <p><a href="javascript:window.close();">Natrag</a></p>
 
         <div id="ads_functions">
             <fieldset class="ad-upload-box-admin">

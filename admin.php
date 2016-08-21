@@ -83,7 +83,7 @@
 			</fieldset>
 
 			<fieldset class="ad-upload-box-admin">
-				<p><a href="./ads/ad_pic.php">Postavke za Reklame</a></p>
+				<h2><a  target="_blank" href="./ads/ad_pic.php">Postavke za Reklame</a></h2>
 			</fieldset>
 
 		</div>
