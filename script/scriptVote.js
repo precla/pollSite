@@ -37,7 +37,7 @@ $(document).ready(function() {
 				}
 			);
 
-			setInterval(fadeDivs, 10000);
+			setInterval(fadeDivs, 7000);
 
 			/* Load custom question for MT */
 			loadedQuestion = './db/question_get.php';
@@ -72,7 +72,7 @@ $(document).ready(function() {
 						// open new notification window and close it after 3.3 sec
 						var w = window.open('./thanks.php?MT=' + selected_value_mt, '');
 						w.focus();
-						setTimeout(function() {w.close();}, 114000);
+						setTimeout(function() {w.close();}, 4000);
 					} else {
 						alert('Nažalost Vaš glas nije zabilježen, pokušajte ponovo ili se obratite djelatniku.');
 					}
