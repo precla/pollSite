@@ -1,6 +1,7 @@
 @charset "utf-8";
 
 body {
+	margin: 0 auto;
 	width: 880px;
 	font-family: Arial, sans-serif;
 }
@@ -20,7 +21,7 @@ h2, a {
 	font-size: medium;
 }
 
-.ad-upload-box-admin {
+.ad-upload-box-admin, #pics_preview {
 	text-align: center;
 	margin: 0 auto;
 }
