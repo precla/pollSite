@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+body {
+	font-family: Arial, sans-serif;
+}
+
+h1, h2, h3, p, a{
+	color: #C59D5F;
+}
+
+h2, a {
+	font-size: medium;
+}
+
+/* admin panel */
+
+#admin_functions {
+	display: flex;
+	font-size: medium;
+}
+
+.mt-choice-box-admin {
+	width: 330px;
+	text-align: center;
+}
+
+.mt-add-box-admin {
+	flex: 1;
+	width: 35%;
+	text-align: center;
+}
+
+#date_and_submit {
+	text-align: center;
+}
+
+.datepicker {
+	flex: 1;
+}
+
+.mt_list_admin {
+	border: 1px solid #ddd;
+	color: #C59D5F;
+	background: #FFFFFF;
+	padding: 2%;
+	width: 220px;
+	font-size: large;
+}
+
+.ad-upload-box-admin {
+	text-align: center;
+	margin: 0 auto;
+}
+
+/* Footer */
+#footer {
+	clear: left;
+	color: #CCCCCC;
+	text-align: center;
+	padding-top: 2%;
+}
+
+hr {
+	border-top: 1px #EEEEEE;
+}

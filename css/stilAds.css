@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+body {
+	width: 880px;
+	font-family: Arial, sans-serif;
+}
+
+h1, h2, h3, p, a{
+	color: #C59D5F;
+}
+
+h2, a {
+	font-size: medium;
+}
+
+/* admin panel */
+
+#ads_functions {
+	display: flex;
+	font-size: medium;
+}
+
+.ad-upload-box-admin {
+	text-align: center;
+	margin: 0 auto;
+}
+
+/* Footer */
+#footer {
+	clear: left;
+	color: #CCCCCC;
+	text-align: center;
+	padding-top: 2%;
+}
+
+hr {
+	border-top: 1px #EEEEEE;
+}
