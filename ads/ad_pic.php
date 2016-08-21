@@ -7,6 +7,12 @@
         $file_type = $_FILES['image']['type'];
         $file_ext = strtolower(end(explode('.',$_FILES['image']['name'])));
 
+        list($width, $height) = getimagesize($file_name);
+
+        if ($width > 740 || $height > 300){
+            $errors[] = "Slika je prevelika!";
+        }
+
         $expensions = array("jpeg","jpg","png");
 
         if (in_array($file_ext, $expensions) === false) {
