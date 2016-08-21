@@ -63,7 +63,7 @@
                 Maksimalna veličina slike: 768 KB</p>
             </fieldset>
 
-            <!-- ad pics -->
+            <!-- delete ad pic -->
             <fieldset class="ad-delete-box-admin">
                 <h3>Brisanje reklamne slike:</h3>
                 <select id="ad_list" name="ads_list" class="ads_list_admin">
