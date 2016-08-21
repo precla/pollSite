@@ -15,11 +15,10 @@
 	</head>
     <body>
         <div id="thanks_page">
-            <h1>Hvala na sudjelovanju!</h1>
+            <h1 style="font-size: 200%">Hvala na sudjelovanju!</h1>
             <div id="mtId" hidden><?php echo $mtid; ?></div>
             <!-- Load custom set thanks text -->
-            <div id="custom_thanks_text">
-            </div>
+            <h1 style="font-size: 250%" id="custom_thanks_text"></p>
         </div>
     </body>
 </html>

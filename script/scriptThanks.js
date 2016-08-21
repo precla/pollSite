@@ -4,12 +4,7 @@ $(document).ready(function() {
 
     $.post( sendUrl, { mt_id: mtId } )
         .done(function (data) {
-            if(data == 'Failed to connect to MySQL'){
-                // do nothing
-            } else if (data) {
-                var customThanksText = $.parseJSON(data);
-
-            }
+            document.getElementById('custom_thanks_text').innerHTML = data;
         }
     );
 });

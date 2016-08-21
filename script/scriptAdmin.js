@@ -334,7 +334,7 @@ $(document).ready(function() {
 		// remove id num and leave only text:
 		thanksTxt = thanksTxt.substr(thanksTxt.indexOf('- ')+2);
 
-		var mt_id_q = $('#mt_list_q').val();
+		var mt_id_q = $('#mt_list_thanks').val();
 		var url_set_thanks_mt = './db/thanks_set.php';
 
 		$.post(url_set_thanks_mt, { mt_id : mt_id_q, custom_thanks_text : thanksTxt })
@@ -355,6 +355,7 @@ function readMtList(){
 	url_read_mt_list = './db/read_mt_list.php';
 	$('.mt_list_admin').load(url_read_mt_list);
 	$('.mt_list_q_admin').load(url_read_mt_list);
+	$('.mt_list_thanks_admin').load(url_read_mt_list);
 }
 
 // load list of all Custom Questions into drop down menu

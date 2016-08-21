@@ -9,7 +9,7 @@
 		exit();
 	}
 
-	$mt_id = mysqli_real_escape_string($connection, $_GET['mt_id']);
+	$mt_id = mysqli_real_escape_string($connection, $_POST['mt_id']);
 
 	$query = "SELECT custom_thanks_text from mt WHERE mt_id_key = ". $mt_id;
 
