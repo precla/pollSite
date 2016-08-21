@@ -41,10 +41,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/stilAds.css" />
 		<link rel="stylesheet" type="text/css" href="../css/jquery-ui-1.11.4.min.css" />
 		<script src="../script/jquery-2.2.4.min.js" type="text/javascript"></script>
-		<script src="../script/jquery-ui-1.11.4.min.js" type="text/javascript"></script>
 		<script src="../script/scriptAds.js" type="text/javascript"></script>
-		<script src="../script/Chart.bundle-2.2.1.min.js" type="text/javascript"></script>
-		<script src="../script/moment.min-2.14.1.js" type="text/javascript"></script>
 	</head>
 
 	<body>
