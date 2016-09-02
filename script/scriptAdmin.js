@@ -19,14 +19,26 @@ $(document).ready(function() {
 /* 
 	Chart rendering START
 
+	votesArray - array from MySQL query
 	votesQone - votes from upper (first) question
 	votesQtwo - votes from lower (second) question
 	votesQthree - votes from upper (first) question
 	votesQfour - votes from lower (second) question
+	voteTime - time of vote shown as hh:mm:ss 	
+	votesAmount - amount of 
+	votesAverage - array of average votes for first, second, third and fourth q. check comment with "vote query"
 */
 
-	var votesArray = votesQone = votesQtwo = votesQthree = votesQfour = voteTime = votesAmount = votesAverage = [];
+	var votesArray = [];
+	var votesQone = [];
+	var votesQtwo = [];
+	var votesQthree = [];
+	var votesQfour = [];
+	var voteTime = [];
+	var votesAmount = [];
+	var votesAverage = [];
 	var voteDate, voteQuestion, votesTotal;
+	var votesTotalAmount = [];
 
 	var ctxOne = document.getElementById('votesChartFirstQ');
 	var ctxTwo = document.getElementById('votesChartSecondQ');
@@ -54,44 +66,79 @@ $(document).ready(function() {
 			
 			// reset all values
 			votesArray = [];
-			votesQone = votesQtwo = votesQthree = votesQfour = [];
+			votesQone = [];
+			votesQtwo = [];
+			votesQthree = [];
+			votesQfour = [];
 			voteTime = [];
-			votesAverage = [];
-			voteDate = voteQuestion = votesTotal = 0;
+			voteDate = [];
+			voteQuestion = [];
+			votesTotal = 0;
 
-			for(i=0; i<4; i++){
+			for(i = 0; i < 4; i++){
 				votesAmount[i] = 0;
+				votesAverage[i] = 0;
 			}
 
 /*
+	vote query
 	0		1	2	3			4	5	6								7
 	["9991","2","3","2016-08-15","4","5","Ocijenite ambijent restorana","14:11:55"]
 */
 			// save requested data from php into array
 			votesArray = $.parseJSON(data);
 
+			for(i = 0; i < votesArray.length; i++){
+				votesQone[i] = 0;
+				votesQtwo[i] = 0;
+				votesQthree[i] = 0;
+				votesQfour[i] = 0;
+			}
+
 			voteDate = votesArray[0][3];
 			voteQuestion = votesArray[0][6];
 
-			for(i = 0; i < votesArray.length; i++){
-				votesQone[i] = parseInt(votesArray[i][1]);
-				votesQtwo[i] = parseInt(votesArray[i][2]);
-				votesQthree[i] = parseInt(votesArray[i][4]);
-				votesQfour[i] = parseInt(votesArray[i][5]);
-				voteTime[i] = votesArray[i][7];
-			}
+			var currVote, nextVote, count = 0;
 
-			for(i = 0; i < votesArray.length; i++){
-				/*	
-					index 0 - sum of votes for first q
-					index 1 - sum of votes for second q ... 
-				*/
-				votesAmount[0] += parseInt(votesArray[i][1]);
-				votesAmount[1] += parseInt(votesArray[i][2]);
-				votesAmount[2] += parseInt(votesArray[i][4]);
-				votesAmount[3] += parseInt(votesArray[i][5]);
+			currVote = moment(voteDate + ' ' + votesArray[0][7]);
+
+			for(i = 1, j = 0; i < votesArray.length; i++){
+
+				// make votes sum in 30min blocks
+				nextVote = moment(voteDate + ' ' + votesArray[i][7]);
+
+				if( nextVote.diff(currVote, 'minutes') < 20 ){
+					votesQone[j] = votesQone[j] + parseInt(votesArray[i][1]);
+					votesQtwo[j] = votesQtwo[j] + parseInt(votesArray[i][2]);
+					votesQthree[j] = votesQthree[j] + parseInt(votesArray[i][4]);
+					votesQfour[j] = votesQfour[j] + parseInt(votesArray[i][5]);
+					count++;
+				} else {
+					votesQone[j] = (votesQone[j] / count).toFixed(2);
+					votesQtwo[j] = (votesQtwo[j] / count).toFixed(2);
+					votesQthree[j] = (votesQthree[j] / count).toFixed(2);
+					votesQfour[j] = (votesQfour[j] / count).toFixed(2);
+
+					count = 0;
+					++j;
+					voteTime[j] = votesArray[i][7];
+					currVote = moment(voteDate + ' ' + voteTime[j]);
+					votesQone[j] += parseInt(votesArray[i][1]);
+					votesQtwo[j] += parseInt(votesArray[i][2]);
+					votesQthree[j] += parseInt(votesArray[i][4]);
+					votesQfour[j] += parseInt(votesArray[i][5]);
+				}
+
+				//	index 0 - sum of votes for first q
+				//	index 1 - sum of votes for second q ... 
+
+				votesAmount[0] = votesAmount[0] + parseInt(votesArray[i][1]);
+				votesAmount[1] = votesAmount[1] + parseInt(votesArray[i][2]);
+				votesAmount[2] = votesAmount[2] + parseInt(votesArray[i][4]);
+				votesAmount[3] = votesAmount[3] + parseInt(votesArray[i][5]);
 
 				votesTotal++;
+
 			}
 
 			for(i = 0; i < 4; i++){
@@ -104,7 +151,7 @@ $(document).ready(function() {
 				votesQtwoChart.destroy();
 				votesQthreeChart.destroy();
 				votesQfourChart.destroy();
-				// votesTotalRadarChart.destroy();
+				votesTotalRadarChart.destroy();
 			}
 
 			// line chart
@@ -113,7 +160,7 @@ $(document).ready(function() {
 				data: {
 					labels: voteTime,
 					datasets: [{
-						label: 'Prosječna ocjena prvog pitanja: ' + votesAverage[0],
+						label: 'Prosječna ocjena u tom trenutku',
 						data: votesQone,
 						backgroundColor: 'rgba(197, 157, 95, 0.2)',
 						borderColor: 'rgba(197, 157, 95, 1)',
@@ -122,6 +169,10 @@ $(document).ready(function() {
 				},
 				options: {
 					responsive: false,
+					title: {
+						display: true,
+						text: 'Prosječna ocjena prvog pitanja: ' + votesAverage[0]
+					},
 					scales: {
 						yAxes: [{
 							ticks: {
@@ -134,11 +185,11 @@ $(document).ready(function() {
 
 			// bar chart
 			votesQtwoChart = new Chart(ctxTwo, {
-				type: 'bar',
+				type: 'line',
 				data: {
 					labels: voteTime,
 					datasets: [{
-						label: 'Prosječna ocjena drugog pitanja: ' + votesAverage[1],
+						label: 'Prosječna ocjena u tom trenutku',
 						data: votesQtwo,
 						backgroundColor: 'rgba(197, 157, 95, 0.2)',
 						borderColor: 'rgba(197, 157, 95, 1)',
@@ -146,6 +197,11 @@ $(document).ready(function() {
 					}]
 				},
 				options: {
+					responsive: false,
+					title: {
+						display: true,
+						text: 'Prosječna ocjena drugog pitanja: ' + votesAverage[1]
+					},
 					scales: {
 						yAxes: [{
 							ticks: {
@@ -158,11 +214,11 @@ $(document).ready(function() {
 
 			// bar chart
 			votesQthreeChart = new Chart(ctxThree, {
-				type: 'bar',
+				type: 'line',
 				data: {
 					labels: voteTime,
 					datasets: [{
-						label: 'Prosječna ocjena trećeg pitanja: ' + votesAverage[2],
+						label: 'Prosječna ocjena u tom trenutku',
 						data: votesQthree,
 						backgroundColor: 'rgba(197, 157, 95, 0.2)',
 						borderColor: 'rgba(197, 157, 95, 1)',
@@ -170,6 +226,11 @@ $(document).ready(function() {
 					}]
 				},
 				options: {
+					responsive: false,
+					title: {
+						display: true,
+						text: 'Prosječna ocjena trećeg pitanja: ' + votesAverage[2]
+					},
 					scales: {
 						yAxes: [{
 							ticks: {
@@ -182,11 +243,11 @@ $(document).ready(function() {
 
 			// bar chart
 			votesQfourChart = new Chart(ctxFour, {
-				type: 'bar',
+				type: 'line',
 				data: {
 					labels: voteTime,
 					datasets: [{
-						label: 'Prosječna ocjena četvrtog pitanja: ' + votesAverage[3],
+						label: 'Prosječna ocjena u tom trenutku',
 						data: votesQfour,
 						backgroundColor: 'rgba(197, 157, 95, 0.2)',
 						borderColor: 'rgba(197, 157, 95, 1)',
@@ -194,6 +255,11 @@ $(document).ready(function() {
 					}]
 				},
 				options: {
+					responsive: false,
+					title: {
+						display: true,
+						text: 'Prosječna ocjena četvrtog pitanja: ' + votesAverage[3]
+					},
 					scales: {
 						yAxes: [{
 							ticks: {
@@ -204,34 +270,51 @@ $(document).ready(function() {
 				}
 			});
 
-			// radar chart for sum of votes
-			votesTotalRadarChart = new Chart(ctxRadar, {
-				type: "radar",
-				data: {
-					labels: ["1", "2", "3", "4", "5"],
-					datasets: [
-						{
-							label: "Ukupan broj određene ocjene",
-							backgroundColor: "rgba(197, 157, 95, 0.2)",
-							borderColor: "rgba(197, 157, 95, 1)",
-							pointBackgroundColor: "rgba(179,181,198,1)",
-							pointBorderColor: "#fff",
-							pointHoverBackgroundColor: "#fff",
-							pointHoverBorderColor: "rgba(179,181,198,1)",
-							data: votesAmount
-						}
-					]
-				},
-				options: {
-					scale: {
-						reverse: true,
-						ticks: {
-							beginAtZero: true
+			get_votes_mt_amount = './db/get_votes_mt_amount.php';
+			posting = $.post(get_votes_mt_amount, { mt_id: selected_value_mt, date: selected_date });
+
+			posting.done(function( data ) {
+				if(data.length < 5){
+					alert('Nema podataka za taj datum!');
+					exit();
+				}
+				votesTotalAmount = [];
+
+				votesArray = $.parseJSON(data);
+
+				for(i=0; i<5; i++){
+					votesTotalAmount[i] = parseInt(votesArray[i]);
+				}
+
+				// radar chart for sum of votes
+				votesTotalRadarChart = new Chart(ctxRadar, {
+					type: "radar",
+					data: {
+						labels: ["1", "2", "3", "4", "5"],
+						datasets: [
+							{
+								label: "Ukupan broj određene ocjene",
+								backgroundColor: "rgba(135, 206, 250, 0.2)",
+								borderColor: "rgba(30, 144, 255, 1)",
+								pointBackgroundColor: "rgba(179, 181, 198, 1)",
+								pointBorderColor: "#fff",
+								pointHoverBackgroundColor: "#fff",
+								pointHoverBorderColor: "rgba(179, 181, 198, 1)",
+								data: votesTotalAmount
+							}
+						]
+					},
+					options: {
+						responsive: false,
+						scale: {
+							reverse: false,
+							ticks: {
+								beginAtZero: true
+							}
 						}
 					}
-				}
+				});
 			});
-
 		});
 	});
 
@@ -368,4 +451,14 @@ function readQuestionList(){
 function readThanksList(){
 	url_read_thanks_list = './db/read_thanks_list.php';
 	$('#thanks_list').load(url_read_thanks_list);
+}
+
+function countVoteAmountRating(arr, rat){
+	var counter = 0;
+	for( i = 1; i < 6; i++ ){
+		if ( arr[i] == rat ){
+			counter++;
+		}
+	}
+	return counter;
 }

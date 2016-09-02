@@ -7,10 +7,10 @@
         $file_type = $_FILES['image']['type'];
         $file_ext = strtolower(end(explode('.',$_FILES['image']['name'])));
 
-        list($width, $height) = getimagesize($file_name);
+        list($width, $height) = getimagesize($file_tmp);
 
-        if ($width > 740 || $height > 300){
-            $errors[] = "Slika je prevelika!";
+        if ($width != 740 && $height != 300){
+            $errors[] = "Dimenzije slike nisu ispravne!";
         }
 
         $expensions = array("jpeg","jpg","png");
@@ -19,15 +19,19 @@
             $errors[] = "Odabrali ste datoteku koja nije podržana!";
         }
 
-        if ($file_size > 786432) {
-            $errors[] = 'Veličina slike ne smije prelaziti 768 KB';
+        if ($file_size > 262144) {
+            $errors[] = 'Veličina slike ne smije prelaziti 256 KB!';
         }
 
         if (empty($errors) == true) {
-            move_uploaded_file($file_tmp, "./".$file_name);
-            print ('Slika je uspješno dodana!');
+            move_uploaded_file( $file_tmp, "./".$file_name );
         } else {
-            print_r ($errors);
+            echo '<div id="pic_error">';
+            foreach($errors as $errMsg){
+                print $errMsg . '</br>';
+            }
+
+            echo '</div>';
         }
     }
 ?>
@@ -53,8 +57,8 @@
                 <h3>Dodavanje nove reklamne slike:</h3>
 
                 <form action="" method="POST" enctype="multipart/form-data">
-                    <input type="file" name="image" />
-                    <input type="submit">Postavi sliku</input>
+                    <input type="file" name="image" /></br>
+                    <input type="submit" value="Postavi sliku"></input>
                 </form>
                 <p>Podržani formati: JPG, JPEG, PNG</br>
                 Rezolucija slike mora biti 740 x 300 pixela (š x v)</br>
