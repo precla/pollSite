@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+body {
+	font-family: Arial, sans-serif;
+	margin: 0 auto;
+	width: 600px;
+}
+
+h3 {
+    color: #C59D5F;
+}
+
+#delete_functions {
+    border: 3px solid rgba(197, 157, 95, 0.4);
+    text-align: center;
+}
+
+#delConfirmation {
+	font-size: large;
+	color: #FF0000;
+	font-weight: bold;
+}

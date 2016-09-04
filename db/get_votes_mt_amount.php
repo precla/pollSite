@@ -8,19 +8,44 @@
 		exit();
 	}
 
-	$mt_id = mysqli_real_escape_string($connection, $_POST['mt_id']);
-	$date = mysqli_real_escape_string($connection, $_POST['date']);
+	$mt_id = mysqli_real_escape_string($connection, $_GET['mt_id']);
+	$date = mysqli_real_escape_string($connection, $_GET['date']);
 
 	$date = date("Y-m-d", strtotime($date));
-	$rows = array();
+	$rows = array(0, 0, 0, 0, 0);
 
-	for( $i = 1; $i < 6; $i++ ){
-		$query = "SELECT COUNT( q_one ) FROM votes WHERE ("
-			. "mt_id = ". $mt_id ." AND vote_date = '". $date ."') "
-			. "AND ( q_one = ". $i ." OR q_two = ". $i ." OR q_three = ". $i ." OR q_four = ". $i ." )";
+	for( $j = 0, $i = 1; $i < 6; $i++, $j++){
+		$queryOne = "SELECT COUNT( * ) FROM votes WHERE "
+			. "mt_id = ". $mt_id ." AND vote_date = '". $date ."' "
+			. "AND q_one = ". $i;
 
-		$result = mysqli_query($connection, $query);
-		array_push($rows, mysqli_fetch_row($result));
+		$result = mysqli_query($connection, $queryOne);
+		$row = mysqli_fetch_row($result);
+		$rows[$j] += $row[0];
+
+		$queryTwo = "SELECT COUNT( * ) FROM votes WHERE "
+			. "mt_id = ". $mt_id ." AND vote_date = '". $date ."' "
+			. "AND q_two = ". $i;
+
+		$result = mysqli_query($connection, $queryTwo);
+		$row = mysqli_fetch_row($result);
+		$rows[$j] += $row[0];
+
+		$queryThree = "SELECT COUNT( * ) FROM votes WHERE "
+			. "mt_id = ". $mt_id ." AND vote_date = '". $date ."' "
+			. "AND q_three = ". $i;
+
+		$result = mysqli_query($connection, $queryThree);
+		$row = mysqli_fetch_row($result);
+		$rows[$j] += $row[0];
+
+		$queryFour = "SELECT COUNT( * ) FROM votes WHERE "
+			. "mt_id = ". $mt_id ." AND vote_date = '". $date ."' "
+			. "AND q_four = ". $i;
+
+		$result = mysqli_query($connection, $queryFour);
+		$row = mysqli_fetch_row($result);
+		$rows[$j] += $row[0];
 	}
 
 	print ( json_encode( $rows ) );

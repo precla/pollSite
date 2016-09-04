@@ -12,6 +12,16 @@ $(document).ready(function() {
 
 	document.getElementById('datepicker').value = moment().format("D-MM-YYYY");;
 
+	$('.show_settings').on('click', function() {
+		if( $('.show_settings').html() == 'Sakrij postavke' ){
+			$('.show_settings').text('Prikaži postavke');
+			$('#admin_functions').hide("blind");
+		} else {
+			$('.show_settings').text('Sakrij postavke');
+			$('#admin_functions').show("blind");
+		}
+	});
+
 	readMtList();
 	readQuestionList();
 	readThanksList();
@@ -101,13 +111,16 @@ $(document).ready(function() {
 			var currVote, nextVote, count = 0;
 
 			currVote = moment(voteDate + ' ' + votesArray[0][7]);
+			var vArrayLength = votesArray.length;
 
-			for(i = 1, j = 0; i < votesArray.length; i++){
+			for(i = 1, j = 0; i < vArrayLength; i++){
 
-				// make votes sum in 30min blocks
+				// make votes sum in 20min blocks
 				nextVote = moment(voteDate + ' ' + votesArray[i][7]);
 
-				if( nextVote.diff(currVote, 'minutes') < 20 ){
+				var stepMin = $("#step_min").val();
+
+				if( (nextVote.diff(currVote, 'minutes') <= stepMin) && (i < vArrayLength-1) ){
 					votesQone[j] = votesQone[j] + parseInt(votesArray[i][1]);
 					votesQtwo[j] = votesQtwo[j] + parseInt(votesArray[i][2]);
 					votesQthree[j] = votesQthree[j] + parseInt(votesArray[i][4]);
@@ -119,7 +132,7 @@ $(document).ready(function() {
 					votesQthree[j] = (votesQthree[j] / count).toFixed(2);
 					votesQfour[j] = (votesQfour[j] / count).toFixed(2);
 
-					count = 0;
+					count = 1;
 					++j;
 					voteTime[j] = votesArray[i][7];
 					currVote = moment(voteDate + ' ' + voteTime[j]);
@@ -154,7 +167,11 @@ $(document).ready(function() {
 				votesTotalRadarChart.destroy();
 			}
 
-			// line chart
+			// chart colors
+			var backgroundColorSet = "rgba(10, 50, 250, 0.2)";
+			var borderColorSet = "rgba(5, 20, 255, 1)";
+
+			// line chart #1
 			votesQoneChart = new Chart(ctxOne, {
 				type: 'line',
 				data: {
@@ -162,8 +179,8 @@ $(document).ready(function() {
 					datasets: [{
 						label: 'Prosječna ocjena u tom trenutku',
 						data: votesQone,
-						backgroundColor: 'rgba(197, 157, 95, 0.2)',
-						borderColor: 'rgba(197, 157, 95, 1)',
+						backgroundColor: backgroundColorSet,
+						borderColor: borderColorSet,
 						borderWidth: 1
 					}]
 				},
@@ -171,7 +188,7 @@ $(document).ready(function() {
 					responsive: false,
 					title: {
 						display: true,
-						text: 'Prosječna ocjena prvog pitanja: ' + votesAverage[0]
+						text: 'Prosječna ocjena za "Koliko ste zadovoljni uslugom restorana?": ' + votesAverage[0]
 					},
 					scales: {
 						yAxes: [{
@@ -183,7 +200,7 @@ $(document).ready(function() {
 				}
 			});
 
-			// bar chart
+			// bar chart #2
 			votesQtwoChart = new Chart(ctxTwo, {
 				type: 'line',
 				data: {
@@ -191,8 +208,8 @@ $(document).ready(function() {
 					datasets: [{
 						label: 'Prosječna ocjena u tom trenutku',
 						data: votesQtwo,
-						backgroundColor: 'rgba(197, 157, 95, 0.2)',
-						borderColor: 'rgba(197, 157, 95, 1)',
+						backgroundColor: backgroundColorSet,
+						borderColor: borderColorSet,
 						borderWidth: 1
 					}]
 				},
@@ -200,7 +217,7 @@ $(document).ready(function() {
 					responsive: false,
 					title: {
 						display: true,
-						text: 'Prosječna ocjena drugog pitanja: ' + votesAverage[1]
+						text: 'Prosječna ocjena za "Koliko ste zadovoljni kvalitetom ponude?": ' + votesAverage[1]
 					},
 					scales: {
 						yAxes: [{
@@ -212,7 +229,7 @@ $(document).ready(function() {
 				}
 			});
 
-			// bar chart
+			// bar chart #3
 			votesQthreeChart = new Chart(ctxThree, {
 				type: 'line',
 				data: {
@@ -220,8 +237,8 @@ $(document).ready(function() {
 					datasets: [{
 						label: 'Prosječna ocjena u tom trenutku',
 						data: votesQthree,
-						backgroundColor: 'rgba(197, 157, 95, 0.2)',
-						borderColor: 'rgba(197, 157, 95, 1)',
+						backgroundColor: backgroundColorSet,
+						borderColor: borderColorSet,
 						borderWidth: 1
 					}]
 				},
@@ -229,7 +246,7 @@ $(document).ready(function() {
 					responsive: false,
 					title: {
 						display: true,
-						text: 'Prosječna ocjena trećeg pitanja: ' + votesAverage[2]
+						text: 'Prosječna ocjena za "Koliko ste zadovoljni raznovrsnošću ponude?": ' + votesAverage[2]
 					},
 					scales: {
 						yAxes: [{
@@ -241,37 +258,44 @@ $(document).ready(function() {
 				}
 			});
 
-			// bar chart
-			votesQfourChart = new Chart(ctxFour, {
-				type: 'line',
-				data: {
-					labels: voteTime,
-					datasets: [{
-						label: 'Prosječna ocjena u tom trenutku',
-						data: votesQfour,
-						backgroundColor: 'rgba(197, 157, 95, 0.2)',
-						borderColor: 'rgba(197, 157, 95, 1)',
-						borderWidth: 1
-					}]
-				},
-				options: {
-					responsive: false,
-					title: {
-						display: true,
-						text: 'Prosječna ocjena četvrtog pitanja: ' + votesAverage[3]
-					},
-					scales: {
-						yAxes: [{
-							ticks: {
-								beginAtZero: true
-							}
+			// bar chart #4
+			var get_custom_question = './db/question_get_date.php';
+			posting = $.get(get_custom_question, { mt_id: selected_value_mt, date: selected_date });
+
+			posting.done(function( data ) {
+				
+				votesQfourChart = new Chart(ctxFour, {
+					type: 'line',
+					data: {
+						labels: voteTime,
+						datasets: [{
+							label: 'Prosječna ocjena u tom trenutku',
+							data: votesQfour,
+							backgroundColor: backgroundColorSet,
+						borderColor: borderColorSet,
+							borderWidth: 1
 						}]
+					},
+					options: {
+						responsive: false,
+						title: {
+							display: true,
+							text: 'Prosječna ocjena za "' + data + '": ' + votesAverage[3]
+						},
+						scales: {
+							yAxes: [{
+								ticks: {
+									beginAtZero: true
+								}
+							}]
+						}
 					}
-				}
+				});
 			});
 
+			// radar chart
 			get_votes_mt_amount = './db/get_votes_mt_amount.php';
-			posting = $.post(get_votes_mt_amount, { mt_id: selected_value_mt, date: selected_date });
+			posting = $.get(get_votes_mt_amount, { mt_id: selected_value_mt, date: selected_date });
 
 			posting.done(function( data ) {
 				if(data.length < 5){
@@ -293,9 +317,9 @@ $(document).ready(function() {
 						labels: ["1", "2", "3", "4", "5"],
 						datasets: [
 							{
-								label: "Ukupan broj određene ocjene",
-								backgroundColor: "rgba(135, 206, 250, 0.2)",
-								borderColor: "rgba(30, 144, 255, 1)",
+								label: "Ukupan broj ocjena",
+								backgroundColor: backgroundColorSet,
+								borderColor: borderColorSet,
 								pointBackgroundColor: "rgba(179, 181, 198, 1)",
 								pointBorderColor: "#fff",
 								pointHoverBackgroundColor: "#fff",
@@ -324,15 +348,18 @@ $(document).ready(function() {
 	$('.submit_button_add_mt').on('click', function() {
 		var new_mt_id = $('#new_mt_id').val();
 		var new_mt_name = $('#new_mt_name').val();
+		var questionTxt = $('#q_list option:selected').html();;
 		
 		if( !$.isNumeric(new_mt_id) ){
 			alert('Unesni "Broj MT-a" nije broj, uklonite znakove i unesite samo brojeve!');
 		} else if(new_mt_id && new_mt_name){
 			var url_set_new_mt = './db/add_mt.php';
-			$.post(url_set_new_mt, { mt_id_key: new_mt_id, mt_name: new_mt_name })
+			$.post(url_set_new_mt, { mt_id_key: new_mt_id, mt_name: new_mt_name, custom_q_text: questionTxt })
 				.done(function (data) {
 					if(data){
-						alert('MT ' + new_mt_id + ' , ' + new_mt_name + ' je uspjesno dodano u bazu!');
+						alert('MT ' + new_mt_id + ' , "' + new_mt_name + '" je uspjesno dodano u bazu!\n'
+								+ 'Četvrto pitanje postavljeno na: ' + questionTxt);
+						readMtList();
 					} else {
 						alert('Greška kod dodavanja MT-a, mozda vec postoji? Ponovite dodavanje ili kontaktirajte administratora!');
 					}
@@ -343,8 +370,6 @@ $(document).ready(function() {
 		} else if( $.isNumeric(new_mt_id) ){
 			alert('Niste unijeli sve potrebne podatke za dodavanje MT-a!');
 		}
-
-		readMtList();
 	});
 
 	// submit new custom question

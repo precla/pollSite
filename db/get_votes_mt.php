@@ -15,7 +15,8 @@
 
 	$query = "SELECT * from votes
 				WHERE mt_id = '". $mt_id ."'
-				AND vote_date = '". $date ."'";
+				AND vote_date = '". $date ."'
+				ORDER BY vote_time ASC";
 	
 	$result = mysqli_query($connection, $query);
 	$rows = array();
