@@ -90,7 +90,7 @@ $(document).ready(function() {
 				votesAverage[i] = 0;
 			}
 
-/*
+/* 
 	vote query
 	0		1	2	3			4	5	6								7
 	["9991","2","3","2016-08-15","4","5","Ocijenite ambijent restorana","14:11:55"]
@@ -159,7 +159,7 @@ $(document).ready(function() {
 			}
 
 			/* clear current chart, if any exist, before rendering new */
-			if(votesQoneChart && votesQtwoChart && votesQthreeChart && votesQfourChart){
+			if(votesQoneChart || votesQtwoChart || votesQthreeChart || votesQfourChart || votesTotalRadarChart){
 				votesQoneChart.destroy();
 				votesQtwoChart.destroy();
 				votesQthreeChart.destroy();
