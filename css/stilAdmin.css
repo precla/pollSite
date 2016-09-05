@@ -50,7 +50,7 @@ fieldset {
 	text-align: center;
 }
 
-#ad-upload-box-admin {
+#extern-functions-box-admin {
 	text-align: center;
 }
 
@@ -68,7 +68,7 @@ fieldset {
 }
 
 #mt-choice-box-admin, #mt-add-box-admin,
-#question-box-admin, #thanks-box-admin, #ad-upload-box-admin {
+#question-box-admin, #thanks-box-admin, #extern-functions-box-admin {
 	border: 3px solid rgba(197, 157, 95, 0.4);
 }
 

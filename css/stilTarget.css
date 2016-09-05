@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+body {
+	margin: 5% auto;
+	width: 880px;
+	font-family: Arial, sans-serif;
+	border: 3px solid rgba(197, 157, 95, 0.4);
+	text-align: center;
+}
+
+h1, h2, h3, p, a{
+	color: #C59D5F;
+}
+
+#mt_list {
+	margin-bottom: 2%;
+}
+
+select {
+	font-size: large;
+	width: 350px;
+}
+
+#set-target-values {
+	margin-top: 4%;
+	margin-bottom: 4%;
+}
+
+#set-target-values h3 {
+	text-align: left;
+	margin-left: 5%; 
+}
+
+#target-settings {
+	margin-top: 3%;
+}
+
+input {
+	width: 50px;
+	float: right;
+	margin-right: 5%;
+}
+
+/* Footer */
+#footer {
+	clear: left;
+	color: #CCCCCC;
+	text-align: center;
+	padding-top: 2%;
+}
+
+hr {
+	border-top: 1px #EEEEEE;
+}
+

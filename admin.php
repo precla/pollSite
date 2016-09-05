@@ -94,7 +94,7 @@
 			</div>
 
 			<!-- Additional stuff -->
-			<fieldset id="ad-upload-box-admin">
+			<fieldset id="extern-functions-box-admin">
 				<div id="ad-upload-content">
 					<h3><a target="_blank" href="./ads/ad_pic.php">Postavke za Reklame</a></h3>
 					<a target="_blank" href="./ads/ad_pic.php">
@@ -103,6 +103,8 @@
 				</div>
 				<hr />
 				<h3><a id="delMtLink" target="_blank" href="./deletemt.php">Brisanje MT-a</a></h3>
+				<hr />
+				<h3><a id="setTargetLink" target="_blank" href="./targets.php">Postavljanje targeta</a></h3>
 			</fieldset>
 
 		</div>
