@@ -23,7 +23,8 @@ function readAdsImageList(){
 				adsImages[i] = dataArray[i];
 				// adsImages[i] = 'ads/' + adsImages[i].slice(2);
 				// ./ag_logo.png
-				adsImages[i] = '<p>Naziv slike: ' + adsImages[i].slice(2) + ' Slika:</p><img src="' + adsImages[i] +'"/>';
+				adsImages[i] = '<div id="pic_preview_b"><p>Naziv slike: ' + adsImages[i].slice(2)
+								+ '</p><img src="' + adsImages[i] +'"/></div>';
 			}
 			$('#pics_preview').html(adsImages);
 		}

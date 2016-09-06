@@ -62,7 +62,7 @@
                 </form>
                 <p>Podržani formati: JPG, JPEG, PNG</br>
                 Rezolucija slike mora biti 740 x 300 pixela (š x v)</br>
-                Maksimalna veličina slike: 768 KB</p>
+                Maksimalna veličina slike: 256 KB</p>
             </fieldset>
 
             <!-- delete ad pic -->

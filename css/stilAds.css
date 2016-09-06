@@ -19,11 +19,20 @@ h2, a {
 	font-size: medium;
 }
 
+p {
+	font-size: large;
+}
+
 /* admin panel */
 
 #ads_functions {
 	display: flex;
 	font-size: medium;
+}
+
+#pic_preview_b {
+	border: 2px solid rgba(197, 157, 95, 0.4);
+	margin-bottom: 2%;
 }
 
 .ad-upload-box-admin, #pics_preview {
