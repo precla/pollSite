@@ -73,7 +73,7 @@ $(document).ready(function() {
 				alert('Nema podataka za taj datum!');
 				exit();
 			}
-			
+
 			// reset all values
 			votesArray = [];
 			votesQone = [];
@@ -339,7 +339,30 @@ $(document).ready(function() {
 					}
 				});
 			});
+
+			$('#targets').empty();
+
+			var get_target_values = './db/target_get.php';
+			posting = $.get(get_target_values, { mt_id: selected_value_mt });
+			posting.done(function( data ) {
+				var targetVal = [];
+
+				targetVal = $.parseJSON(data);
+
+				for(i = 0; i < 4; i++){
+					$("#targets").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
+					if(votesAverage[i] < parseFloat(targetVal[i+1])) {
+						$("#targets").append('<div id="redTxt">' + votesAverage[i] + '</div>'
+								+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+1]) + '</div></br>');
+					} else {
+						$("#targets").append('<div id="greenTxt">' + votesAverage[i] + '</div>'
+								+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+1]) + '</div></br>');
+					}
+				}
+			});
+
 		});
+		$("#vote_charts").show("blind");
 	});
 
 /* Chart rendering END */
@@ -476,14 +499,4 @@ function readQuestionList(){
 function readThanksList(){
 	url_read_thanks_list = './db/read_thanks_list.php';
 	$('#thanks_list').load(url_read_thanks_list);
-}
-
-function countVoteAmountRating(arr, rat){
-	var counter = 0;
-	for( i = 1; i < 6; i++ ){
-		if ( arr[i] == rat ){
-			counter++;
-		}
-	}
-	return counter;
 }

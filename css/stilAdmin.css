@@ -19,11 +19,11 @@ fieldset {
 }
 
 .show_settings {	
-	border-color: #C59D5F;
+	border-color: rgba(197, 157, 95, 0.4);
 	border-width: 1px;
 	border-radius: 4px 4px 4px 4px;
 	color: #FFFFFF;
-	background-color: #C59D5F;
+	background-color: rgba(197, 157, 95, 0.4);
 	margin-top: 1%;
 	margin-bottom: 1%;
 	margin-left: auto;
@@ -104,7 +104,41 @@ fieldset {
 	margin-right: 6%;
 }
 
-/* Charts */
+/* Charts & target */
+
+#infoRight {
+	float: right;
+	margin-right: 5%;
+	padding-left: 3%;
+	border-left: 4px solid rgba(197, 157, 95, 0.4);
+	text-align: center;
+}
+
+#targetTxt {
+	margin-top: 3%;
+	font-size: larger;
+	color: rgb(5, 20, 255);
+	border: 2px solid rgba(197, 157, 95, 0.4);
+}
+
+#targets * {
+	display: inline-block;
+}
+
+#redTxt {
+	font-size: large;
+	color: rgb(220, 0, 0);
+}
+
+#greenTxt {
+	font-size: large;
+	color: rgb(0, 210, 0);
+}
+
+#blueTxt {
+	font-size: large;
+	color: rgb(0, 0, 220);
+}
 
 #vote_charts canvas {
 	margin-top: 2%;

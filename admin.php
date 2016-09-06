@@ -108,12 +108,18 @@
 			</fieldset>
 
 		</div>
-		<div id='vote_charts'>
-			<canvas id="votesChartFirstQ" height="250px" width="1000px"></canvas>
-			<canvas id="votesChartSecondQ" height="250px" width="1000px"></canvas>
-			<canvas id="votesChartThirdQ" height="250px" width="1000px"></canvas>
-			<canvas id="votesChartFourthQ" height="250px" width="1000px"></canvas>
-			<canvas id="votesRadarChart" height="333px"></canvas>
+		<div hidden id="vote_charts">
+			<div id="infoRight">
+				<canvas id="votesRadarChart" height="333px"></canvas>
+				<div id="targetTxt">Targeti:
+					<div id="targets"></div>
+				</div>
+			</div>
+			<canvas id="votesChartFirstQ" height="250px" width="1100px"></canvas>
+			<canvas id="votesChartSecondQ" height="250px" width="1100px"></canvas>
+			<canvas id="votesChartThirdQ" height="250px" width="1100px"></canvas>
+			<canvas id="votesChartFourthQ" height="250px" width="1100px"></canvas>
+			
 		</div>
 
 		<div id="footer"><hr />&copy; Antonio Prcela. All rights reserved.</div>
