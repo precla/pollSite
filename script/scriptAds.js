@@ -19,6 +19,7 @@ function readAdsImageList(){
 	$.get(url_read_ads_images).done(function (data) {
 		if (data) {
 			dataArray = $.parseJSON(data);
+			adsImages = [];
 			for(i=0; i < dataArray.length; i++){
 				adsImages[i] = dataArray[i];
 				// adsImages[i] = 'ads/' + adsImages[i].slice(2);
@@ -47,13 +48,14 @@ $(document).ready(function() {
 			.done(function (data) {
 				if(data){
 					alert('Slika: "' + adImageName + '" , je uspjesno izbrisana!');
+					readAdsList();
+					readAdsImageList();
 				} else {
 					alert('Greška kod brisanja slike. Ponovite brisanje ili kontaktirajte administratora!');
 				}
 			}
 		);
-		readAdsList();
-		readAdsImageList();
+		
 	});
 
 });

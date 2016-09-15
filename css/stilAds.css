@@ -6,16 +6,23 @@ body {
 	font-family: Arial, sans-serif;
 }
 
-h1, h2, h3, p, a{
+#goBack {
+	font-size: large;
+	color: #0000AA;
+	font-weight: bold; 
+}
+
+h1, h2, h3, p {
 	color: #C59D5F;
 }
 
 #pic_error {
 	color: #FF0000;
 	font-size: large;
+	text-align: center;
 }
 
-h2, a {
+h2 {
 	font-size: medium;
 }
 
