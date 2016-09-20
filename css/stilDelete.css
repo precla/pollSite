@@ -20,3 +20,10 @@ h3 {
 	color: #FF0000;
 	font-weight: bold;
 }
+
+#goBack {
+	font-size: large;
+	color: #0000AA;
+	font-weight: bold;
+	margin: 2%;
+}

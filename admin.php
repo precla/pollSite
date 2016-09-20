@@ -102,7 +102,7 @@
 					</a>
 				</div>
 				<hr />
-				<h3><a id="delMtLink" target="_blank" href="./deletemt.php">Brisanje MT-a</a></h3>
+				<h3><a id="delMtLink" target="_blank" href="./deletemt.php">Brisanje podataka</a></h3>
 				<hr />
 				<h3><a id="setTargetLink" target="_blank" href="./targets.php">Postavljanje targeta</a></h3>
 			</fieldset>

@@ -371,7 +371,8 @@ $(document).ready(function() {
 	$('.submit_button_add_mt').on('click', function() {
 		var new_mt_id = $('#new_mt_id').val();
 		var new_mt_name = $('#new_mt_name').val();
-		var questionTxt = $('#q_list option:selected').html();;
+		var questionTxt = $('#q_list option:selected').html();
+		questionTxt = 'Ocijenite ambijent restorana';
 		
 		if( !$.isNumeric(new_mt_id) ){
 			alert('Unesni "Broj MT-a" nije broj, uklonite znakove i unesite samo brojeve!');

@@ -11,7 +11,7 @@
 	$mt_id_key = mysqli_real_escape_string($connection, $_POST['mt_id_key']);
 	$mt_name = mysqli_real_escape_string($connection, $_POST['mt_name']);
 
-	$query = "INSERT INTO mt (mt_id_key, mt_name) VALUES ('$mt_id_key', '$mt_name')";
+	$query = "INSERT INTO mt (mt_id_key, mt_name, custom_q_text) VALUES ('$mt_id_key', '$mt_name', 'Ocijenite ambijent restorana')";
 
 	echo mysqli_query($connection, $query);
 
