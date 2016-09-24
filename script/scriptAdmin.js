@@ -22,9 +22,7 @@ $(document).ready(function() {
 		}
 	});
 
-	readMtList();
-	readQuestionList();
-	readThanksList();
+	reloadStuff();
 
 /* 
 	Chart rendering START
@@ -341,6 +339,7 @@ $(document).ready(function() {
 			});
 
 			$('#targets').empty();
+			$('#targetTxt').hide();
 
 			var get_target_values = './db/target_get.php';
 			posting = $.get(get_target_values, { mt_id: selected_value_mt });
@@ -349,15 +348,18 @@ $(document).ready(function() {
 
 				targetVal = $.parseJSON(data);
 
-				for(i = 0; i < 4; i++){
-					$("#targets").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
-					if(votesAverage[i] < parseFloat(targetVal[i+1])) {
-						$("#targets").append('<div id="redTxt">' + votesAverage[i] + '</div>'
-								+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+1]) + '</div></br>');
-					} else {
-						$("#targets").append('<div id="greenTxt">' + votesAverage[i] + '</div>'
-								+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+1]) + '</div></br>');
+				if(targetVal){
+					for(i = 0; i < 4; i++){
+						$("#targets").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
+						if(votesAverage[i] < parseFloat(targetVal[i+1])) {
+							$("#targets").append('<div id="redTxt">' + votesAverage[i] + '</div>'
+									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+1]) + '</div></br>');
+						} else {
+							$("#targets").append('<div id="greenTxt">' + votesAverage[i] + '</div>'
+									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+1]) + '</div></br>');
+						}
 					}
+					$('#targetTxt').show();
 				}
 			});
 
@@ -383,7 +385,7 @@ $(document).ready(function() {
 					if(data){
 						alert('MT ' + new_mt_id + ' , "' + new_mt_name + '" je uspjesno dodano u bazu!\n'
 								+ 'Četvrto pitanje postavljeno na: ' + questionTxt);
-						readMtList();
+						reloadStuff();
 					} else {
 						alert('Greška kod dodavanja MT-a, mozda vec postoji? Ponovite dodavanje ili kontaktirajte administratora!');
 					}
@@ -391,6 +393,7 @@ $(document).ready(function() {
 			);
 			$('#new_mt_id').val('');
 			$('#new_mt_name').val('');
+			
 		} else if( $.isNumeric(new_mt_id) ){
 			alert('Niste unijeli sve potrebne podatke za dodavanje MT-a!');
 		}
@@ -407,6 +410,7 @@ $(document).ready(function() {
 			$.post(url_set_new_question, { question_text : new_question })
 				.done(function (data) {
 					if(data){
+						reloadStuff();
 						alert('Pitanje: "' + new_question + '" , je uspjesno dodano u bazu!');
 					} else {
 						alert('Greška kod dodavanja pitanja.\nPonovite dodavanje ili kontaktirajte administratora!');
@@ -415,7 +419,6 @@ $(document).ready(function() {
 			);
 			$('#new_question_text').val('');
 		}
-		readQuestionList();
 	});
 
 	// set question for MT
@@ -430,6 +433,7 @@ $(document).ready(function() {
 		$.post(url_set_question_mt, { mt_id : mt_id_q, question_text : questionTxt })
 			.done(function (data) {
 				if(data){
+					reloadStuff();
 					alert('Pitanje: "' + questionTxt + '" , je uspjesno postavljeno za MT ' + mt_id_q + '!');
 				} else {
 					alert('Greška kod postavljanja pitanja. Ponovite postavljanje ili kontaktirajte administratora!');
@@ -449,6 +453,7 @@ $(document).ready(function() {
 			$.post(url_set_new_thanks, { custom_thanks_text : new_thanks })
 				.done(function (data) {
 					if(data){
+						reloadStuff();
 						alert('Tekst: "' + new_thanks + '" , je uspjesno dodan u bazu!');
 					} else {
 						alert('Greška kod dodavanja teksta.\nPonovite dodavanje ili kontaktirajte administratora!');
@@ -457,7 +462,6 @@ $(document).ready(function() {
 			);
 			$('#new_thanks_text').val('');
 		}
-		readThanksList();
 	});
 
 	// set thanks message for MT
@@ -500,4 +504,10 @@ function readQuestionList(){
 function readThanksList(){
 	url_read_thanks_list = './db/read_thanks_list.php';
 	$('#thanks_list').load(url_read_thanks_list);
+}
+
+function reloadStuff(){
+	readMtList();
+	readQuestionList();
+	readThanksList();
 }
