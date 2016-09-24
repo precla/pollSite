@@ -24,18 +24,39 @@
             <button class="submit_choice" type="submit">Odaberi MT</button>
             <hr />
             <div hidden id="set-target-values">
-                <h2>Željene ocjene za pitanja:</h2>
+                <h2 id="grade-set-text">Željene ocjene za pitanja:</h2>
+                
+                <div id="target-range">
+                    <p>Tjedan:</p>
+                    <p>Mjesec:</p>
+                    <p>Kvartal:</p>
+                    <p>Godina:</p>
+                </div>
 
+                <!-- yeah, it's reverse order, year, quarter, month, week -->
                 <h3>Koliko ste zadovoljni uslugom restorana?
-                <input type="number" id="q_one_target" value="0" step="0.1" min="1" max="5"></h3>
+                <input type="number" id="q_one_target_year" value="0" step="0.1" min="1" max="5">
+                <input type="number" id="q_one_target_quarter" value="0" step="0.1" min="1" max="5">
+                <input type="number" id="q_one_target_month" value="0" step="0.1" min="1" max="5">
+                <input type="number" id="q_one_target_week" value="0" step="0.1" min="1" max="5"></h3>
 
                 <h3>Koliko ste zadovoljni kvalitetom ponude?
-                <input type="number" id="q_two_target" value="0" step="0.1" min="1" max="5"></h3>
+                <input type="number" id="q_two_target_year" value="0" step="0.1" min="1" max="5">
+                <input type="number" id="q_two_target_quarter" value="0" step="0.1" min="1" max="5">
+                <input type="number" id="q_two_target_month" value="0" step="0.1" min="1" max="5">
+                <input type="number" id="q_two_target_week" value="0" step="0.1" min="1" max="5"></h3>
                 
                 <h3>Koliko ste zadovoljni raznovrsnošću ponude?
-                <input type="number" id="q_three_target" value="0" step="0.1" min="1" max="5"></h3>
+                <input type="number" id="q_three_target_year" value="0" step="0.1" min="1" max="5">
+                <input type="number" id="q_three_target_quarter" value="0" step="0.1" min="1" max="5">
+                <input type="number" id="q_three_target_month" value="0" step="0.1" min="1" max="5">
+                <input type="number" id="q_three_target_week" value="0" step="0.1" min="1" max="5"></h3>
 
-                <h3 id="custom_question"></h3>
+                <h3 id="custom_question">
+                <input type="number" id="q_four_target_year" value="0" step="0.1" min="1" max="5">
+                <input type="number" id="q_four_target_quarter" value="0" step="0.1" min="1" max="5">
+                <input type="number" id="q_four_target_month" value="0" step="0.1" min="1" max="5">
+                <input type="number" id="q_four_target_week" value="0" step="0.1" min="1" max="5"></h3>
 
                 <button class="submit_target_values" type="submit">Postavi vrijednosti</button>
             </div>

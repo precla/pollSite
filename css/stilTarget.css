@@ -2,7 +2,7 @@
 
 body {
 	margin: 5% auto;
-	width: 880px;
+	width: 1040px;
 	font-family: Arial, sans-serif;
 	border: 3px solid rgba(197, 157, 95, 0.4);
 	text-align: center;
@@ -26,9 +26,27 @@ select {
 	margin-bottom: 4%;
 }
 
+#grade-set-text {
+	text-align: right;
+	margin-right: 5%;
+	font-size: large;
+	font-weight: bold;
+}
+
 #set-target-values h3 {
 	text-align: left;
 	margin-left: 5%; 
+}
+
+#target-range {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	font-weight: bold;
+}
+
+#target-range p {
+	margin-right: 4.2%;
 }
 
 #target-settings {

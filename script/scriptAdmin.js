@@ -338,6 +338,7 @@ $(document).ready(function() {
 				});
 			});
 
+			// Targets:
 			$('#targets').empty();
 			$('#targetTxt').hide();
 
@@ -348,7 +349,12 @@ $(document).ready(function() {
 
 				targetVal = $.parseJSON(data);
 
+				// q_one_m	q_two_m	 q_three_m 	q_four_m 	q_one_q   q_two_q 	q_three_q 	q_four_q 	q_one_y 	q_two_y 	q_three_y 	q_four_y
+				// 2.9",	"3",	 "3.8",		"3.9",		"2.3",    "2.3",	"3.5",		"3.7",		"1.7",		"3.1",		"3.3",		"3.3"
 				if(targetVal){
+
+					// week (+1)
+					$("#targets").append('</br><h2>Tjedan</h2></br>');
 					for(i = 0; i < 4; i++){
 						$("#targets").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
 						if(votesAverage[i] < parseFloat(targetVal[i+1])) {
@@ -359,6 +365,46 @@ $(document).ready(function() {
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+1]) + '</div></br>');
 						}
 					}
+
+					// month (+5)
+					$("#targets").append('</br><h2>Mjesec</h2></br>');
+					for(i = 0; i < 4; i++){
+						$("#targets").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
+						if(votesAverage[i] < parseFloat(targetVal[i+5])) {
+							$("#targets").append('<div id="redTxt">' + votesAverage[i] + '</div>'
+									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+5]) + '</div></br>');
+						} else {
+							$("#targets").append('<div id="greenTxt">' + votesAverage[i] + '</div>'
+									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+5]) + '</div></br>');
+						}
+					}
+
+					// quarter (+9)
+					$("#targets").append('</br><h2>Kvartal</h2></br>');
+					for(i = 0; i < 4; i++){
+						$("#targets").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
+						if(votesAverage[i] < parseFloat(targetVal[i+9])) {
+							$("#targets").append('<div id="redTxt">' + votesAverage[i] + '</div>'
+									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+9]) + '</div></br>');
+						} else {
+							$("#targets").append('<div id="greenTxt">' + votesAverage[i] + '</div>'
+									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+5]) + '</div></br>');
+						}
+					}
+
+					// year (+13)
+					$("#targets").append('</br><h2>Godina</h2></br>');
+					for(i = 0; i < 4; i++){
+						$("#targets").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
+						if(votesAverage[i] < parseFloat(targetVal[i+13])) {
+							$("#targets").append('<div id="redTxt">' + votesAverage[i] + '</div>'
+									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+13]) + '</div></br>');
+						} else {
+							$("#targets").append('<div id="greenTxt">' + votesAverage[i] + '</div>'
+									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+13]) + '</div></br>');
+						}
+					}
+
 					$('#targetTxt').show();
 				}
 			});
