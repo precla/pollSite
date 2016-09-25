@@ -86,7 +86,7 @@ $(document).ready(function() {
 			voteQuestion = [];
 			votesTotal = 0;
 
-			for(i = 0; i < 4; i++){
+			for(var i = 0; i < 4; i++){
 				votesAmount[i] = 0;
 				votesAverage[i] = 0;
 			}
@@ -99,7 +99,7 @@ $(document).ready(function() {
 			// save requested data from php into array
 			votesArray = $.parseJSON(data);
 
-			for(i = 0; i < votesArray.length; i++){
+			for(var i = 0; i < votesArray.length; i++){
 				votesQone[i] = 0;
 				votesQtwo[i] = 0;
 				votesQthree[i] = 0;
@@ -155,7 +155,7 @@ $(document).ready(function() {
 
 			}
 
-			for(i = 0; i < 4; i++){
+			for(var i = 0; i < 4; i++){
 				votesAverage[i] = (votesAmount[i] / votesTotal).toFixed(2);
 			}
 
@@ -308,7 +308,7 @@ $(document).ready(function() {
 
 				votesArray = $.parseJSON(data);
 
-				for(i=0; i<5; i++){
+				for(var i = 0; i<5; i++){
 					votesTotalAmount[i] = parseInt(votesArray[i]);
 				}
 
@@ -362,52 +362,92 @@ $(document).ready(function() {
 				// 2.9",	"3",	 "3.8",		"3.9",		"2.3",    "2.3",	"3.5",		"3.7",		"1.7",		"3.1",		"3.3",		"3.3"
 				if(targetVal){
 
-					// week (+1)
-					for(i = 0; i < 4; i++){
+					//var currDate = moment().format('L');
+					
+					var weekStart = moment().startOf('isoWeek').format('YYYY-MM-DD');
+					var weekEnd = moment().endOf('isoWeek').format('YYYY-MM-DD');
+
+					var tWeekValArrayAvg = [];
+					var tMonthValArrayAvg = [];
+					var tQuarterValArrayAvg = [];
+					var tYearValArrayAvg = [];
+
+					var url_get_target_votes = './db/get_votes_mt_target_avg.php';
+					var getting = $.get(url_get_target_votes, { mt_id: selected_value_mt, date_start: weekStart, date_end: weekEnd });
+
+					getting.done(function(data){
+						var targetAverageValues = $.parseJSON(data);
+
+						// from 0 to 3 is for week
+						tWeekValArrayAvg[0] = parseFloat(targetAverageValues[0]);
+						tWeekValArrayAvg[1] = parseFloat(targetAverageValues[1]);
+						tWeekValArrayAvg[2] = parseFloat(targetAverageValues[2]);
+						tWeekValArrayAvg[3] = parseFloat(targetAverageValues[3]);
+
+						// from 4 to 7 is for month
+						tMonthValArrayAvg[0] = parseFloat(targetAverageValues[4]);
+						tMonthValArrayAvg[1] = parseFloat(targetAverageValues[5]);
+						tMonthValArrayAvg[2] = parseFloat(targetAverageValues[6]);
+						tMonthValArrayAvg[3] = parseFloat(targetAverageValues[7]);
+
+						// from 8 to 11 is for quarter
+						tQuarterValArrayAvg[0] = parseFloat(targetAverageValues[8]);
+						tQuarterValArrayAvg[1] = parseFloat(targetAverageValues[9]);
+						tQuarterValArrayAvg[2] = parseFloat(targetAverageValues[10]);
+						tQuarterValArrayAvg[3] = parseFloat(targetAverageValues[11]);
+
+						// from 12 to 15 is for year
+						tYearValArrayAvg[0] = parseFloat(targetAverageValues[12]);
+						tYearValArrayAvg[1] = parseFloat(targetAverageValues[13]);
+						tYearValArrayAvg[2] = parseFloat(targetAverageValues[14]);
+						tYearValArrayAvg[3] = parseFloat(targetAverageValues[15]);
+
+					});
+
+					var i = 0;
+					while(i < 4){
+
+						// week (+1)
 						$("#targets_w").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
-						if(votesAverage[i] < parseFloat(targetVal[i+1])) {
-							$("#targets_w").append('<div id="redTxt">' + votesAverage[i] + '</div>'
+	
+						if(tWeekValArrayAvg[i] < parseFloat(targetVal[i+1])) {
+							$("#targets_w").append('<div id="redTxt">' + tWeekValArrayAvg[i] + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+1]) + '</div>');
 						} else {
-							$("#targets_w").append('<div id="greenTxt">' + votesAverage[i] + '</div>'
+							$("#targets_w").append('<div id="greenTxt">' + tWeekValArrayAvg[i] + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+1]) + '</div>');
 						}
-					}
 
-					// month (+5)
-					for(i = 0; i < 4; i++){
+						// month (+5)
 						$("#targets_m").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
-						if(votesAverage[i] < parseFloat(targetVal[i+5])) {
-							$("#targets_m").append('<div id="redTxt">' + votesAverage[i] + '</div>'
+						if(tMonthValArrayAvg[i] < parseFloat(targetVal[i+5])) {
+							$("#targets_m").append('<div id="redTxt">' + tMonthValArrayAvg[i] + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+5]) + '</div>');
 						} else {
-							$("#targets_m").append('<div id="greenTxt">' + votesAverage[i] + '</div>'
+							$("#targets_m").append('<div id="greenTxt">' + tMonthValArrayAvg[i] + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+5]) + '</div>');
 						}
-					}
 
-					// quarter (+9)
-					for(i = 0; i < 4; i++){
+						// quarter (+9)
 						$("#targets_q").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
-						if(votesAverage[i] < parseFloat(targetVal[i+9])) {
-							$("#targets_q").append('<div id="redTxt">' + votesAverage[i] + '</div>'
+						if(tQuarterValArrayAvg[i] < parseFloat(targetVal[i+9])) {
+							$("#targets_q").append('<div id="redTxt">' + tQuarterValArrayAvg[i] + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+9]) + '</div>');
 						} else {
-							$("#targets_q").append('<div id="greenTxt">' + votesAverage[i] + '</div>'
+							$("#targets_q").append('<div id="greenTxt">' + tQuarterValArrayAvg[i] + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+5]) + '</div>');
 						}
-					}
 
-					// year (+13)
-					for(i = 0; i < 4; i++){
+						// year (+13)
 						$("#targets_y").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
-						if(votesAverage[i] < parseFloat(targetVal[i+13])) {
-							$("#targets_y").append('<div id="redTxt">' + votesAverage[i] + '</div>'
+						if(tYearValArrayAvg[i] < parseFloat(targetVal[i+13])) {
+							$("#targets_y").append('<div id="redTxt">' + tYearValArrayAvg[i] + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+13]) + '</div>');
 						} else {
-							$("#targets_y").append('<div id="greenTxt">' + votesAverage[i] + '</div>'
+							$("#targets_y").append('<div id="greenTxt">' + tYearValArrayAvg[i] + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+13]) + '</div>');
 						}
+						i++;
 					}
 
 					$("#infoTarget").show("blind");
@@ -418,121 +458,6 @@ $(document).ready(function() {
 	});
 
 /* Chart rendering END */
-
-	// add new MT
-	$('.submit_button_add_mt').on('click', function() {
-		var new_mt_id = $('#new_mt_id').val();
-		var new_mt_name = $('#new_mt_name').val();
-		var questionTxt = $('#q_list option:selected').html();
-		questionTxt = 'Ocijenite ambijent restorana';
-		
-		if( !$.isNumeric(new_mt_id) ){
-			alert('Unesni "Broj MT-a" nije broj, uklonite znakove i unesite samo brojeve!');
-		} else if(new_mt_id && new_mt_name){
-			var url_set_new_mt = './db/add_mt.php';
-			$.post(url_set_new_mt, { mt_id_key: new_mt_id, mt_name: new_mt_name, custom_q_text: questionTxt })
-				.done(function (data) {
-					if(data){
-						alert('MT ' + new_mt_id + ' , "' + new_mt_name + '" je uspjesno dodano u bazu!\n'
-								+ 'Četvrto pitanje postavljeno na: ' + questionTxt);
-						reloadStuff();
-					} else {
-						alert('Greška kod dodavanja MT-a, mozda vec postoji? Ponovite dodavanje ili kontaktirajte administratora!');
-					}
-				}
-			);
-			$('#new_mt_id').val('');
-			$('#new_mt_name').val('');
-			
-		} else if( $.isNumeric(new_mt_id) ){
-			alert('Niste unijeli sve potrebne podatke za dodavanje MT-a!');
-		}
-	});
-
-	// submit new custom question
-	$('.submit_button_add_question').on('click', function() {
-		var new_question = $('#new_question_text').val();
-		var url_set_new_question = './db/question_add.php';
-
-		if(new_question.length < 1 || new_question.length > 255){
-			alert('Unos ne smije biti prazan i mora biti manji od 255 znakova.\nMolimo ponovite unos!');
-		} else {
-			$.post(url_set_new_question, { question_text : new_question })
-				.done(function (data) {
-					if(data){
-						reloadStuff();
-						alert('Pitanje: "' + new_question + '" , je uspjesno dodano u bazu!');
-					} else {
-						alert('Greška kod dodavanja pitanja.\nPonovite dodavanje ili kontaktirajte administratora!');
-					}
-				}
-			);
-			$('#new_question_text').val('');
-		}
-	});
-
-	// set question for MT
-	$('.submit_button_set_question').on('click', function() {
-		var questionTxt = $('#q_list option:selected').html();
-		// remove id num and leave only text:
-		questionTxt = questionTxt.substr(questionTxt.indexOf('- ')+2);
-
-		var mt_id_q = $('#mt_list_q').val();
-		var url_set_question_mt = './db/question_set.php';
-
-		$.post(url_set_question_mt, { mt_id : mt_id_q, question_text : questionTxt })
-			.done(function (data) {
-				if(data){
-					reloadStuff();
-					alert('Pitanje: "' + questionTxt + '" , je uspjesno postavljeno za MT ' + mt_id_q + '!');
-				} else {
-					alert('Greška kod postavljanja pitanja. Ponovite postavljanje ili kontaktirajte administratora!');
-				}
-			}
-		);
-	});
-
-	// submit thanks message for MT
-	$('.submit_button_thanks_message').on('click', function() {
-		var new_thanks = $('#new_thanks_text').val();
-		var url_set_new_thanks = './db/thanks_add.php';
-
-		if(new_thanks.length < 1 || new_thanks.length > 255){
-			alert('Unos ne smije biti prazan i mora biti manji od 255 znakova.\nMolimo ponovite unos!');
-		} else {
-			$.post(url_set_new_thanks, { custom_thanks_text : new_thanks })
-				.done(function (data) {
-					if(data){
-						reloadStuff();
-						alert('Tekst: "' + new_thanks + '" , je uspjesno dodan u bazu!');
-					} else {
-						alert('Greška kod dodavanja teksta.\nPonovite dodavanje ili kontaktirajte administratora!');
-					}
-				}
-			);
-			$('#new_thanks_text').val('');
-		}
-	});
-
-	// set thanks message for MT
-	$('.submit_button_set_thanks').on('click', function() {
-		var thanksTxt = $('#thanks_list option:selected').html();
-		// remove id num and leave only text:
-		thanksTxt = thanksTxt.substr(thanksTxt.indexOf('- ')+2);
-
-		var mt_id_q = $('#mt_list_thanks').val();
-		var url_set_thanks_mt = './db/thanks_set.php';
-
-		$.post(url_set_thanks_mt, { mt_id : mt_id_q, custom_thanks_text : thanksTxt })
-			.done(function (data) {
-				if(data){
-					alert('Tekst: "' + thanksTxt + '" , je uspjesno postavljeno za MT ' + mt_id_q + '!');
-				} else {
-					alert('Greška kod postavljanja teksta. Ponovite postavljanje ili kontaktirajte administratora!');
-				}
-			}
-		);
-	});
 
 });
 
@@ -557,6 +482,12 @@ function readThanksList(){
 }
 
 function reloadStuff(){
+	readMtList();
+	readQuestionList();
+	readThanksList();
+}
+
+function calcTargets(){
 	readMtList();
 	readQuestionList();
 	readThanksList();

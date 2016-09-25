@@ -3,7 +3,7 @@
 body {
 	font-family: Arial, sans-serif;
 	margin: 0 auto;
-	width: 1640px;
+	width: 1440px;
 }
 
 h1, h2, h3, p, a{
@@ -41,12 +41,13 @@ fieldset {
 }
 
 #mt-choice-box-admin {
-	width: 330px;
+	width: 450px;
 	text-align: center;
+    margin: 0 auto;
 }
 
 #mt-add-box-admin {
-	width: 300px;
+	width: 400px;
 	text-align: center;
 }
 
@@ -76,7 +77,7 @@ fieldset {
 	border: 1px solid;
 	background: #FFFFFF;
 	padding: 2%;
-	width: 315px;
+	width: 380px;
 	font-size: medium;
 }
 
@@ -107,7 +108,7 @@ fieldset {
 /* Charts & target */
 
 #infoTarget {
-	margin-top: 1%;
+    margin-top: 1%;
 	text-align: center;
     display: flex;
     font-size: large;

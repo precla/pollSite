@@ -1,0 +1,28 @@
+{
+    // JSHint Configuration File
+    // See http://jshint.com/docs/ for more details
+
+    // Settings
+
+    "maxerr"        : 100,      // {int} Maximum error before stopping
+
+    // Predefined globals whom JSHint will ignore.
+
+    "node"          : true,     // Standard node globals
+
+    // Enforcing
+
+    "bitwise"       : true,     // true: Prohibit bitwise operators (&, |, ^, etc.)
+    "curly"         : true,     // true: Require {} for every new block or scope
+    "eqeqeq"        : true,
+    "forin"         : true,
+    "freeze"        : true,
+    "nonbsp"        : true,
+    "strict"        : true,
+    "undef"         : true,     // true: Require all non-global variables to be declared (prevents global leaks)
+    "unused"        : true,
+
+    // Relaxing
+
+    "sub"           : true      // true: Tolerate using `[]` notation when it can still be expressed in dot notation
+}

@@ -104,20 +104,22 @@
 				<hr />
 				<h3><a id="setTargetLink" target="_blank" href="./targets.php">Postavljanje targeta</a></h3>
 			</fieldset>
-
 		</div>
+
+		<div hidden id="infoTarget">
+			<canvas id="votesRadarChart" height="500px"></canvas>
+			<div id="targetTxt"><h3>Targeti:</h3></div>
+			<div class="targetTxt_border"><h3>Tjedan</h3><fieldset id="targets_w"></fieldset></div>
+			<div class="targetTxt_border"><h3>Mjesec</h3><fieldset id="targets_m"></fieldset></div>
+			<div class="targetTxt_border"><h3>Kvartal</h3><fieldset id="targets_q"></fieldset></div>
+			<div class="targetTxt_border"><h3>Godina</h3><fieldset id="targets_y"></fieldset></div>
+		</div>
+
 		<div hidden id="vote_charts">
-			<div id="infoRight">
-				<canvas id="votesRadarChart" height="333px"></canvas>
-				<div id="targetTxt">Targeti:
-					<div id="targets"></div>
-				</div>
-			</div>
-			<canvas id="votesChartFirstQ" height="250px" width="1100px"></canvas>
-			<canvas id="votesChartSecondQ" height="250px" width="1100px"></canvas>
-			<canvas id="votesChartThirdQ" height="250px" width="1100px"></canvas>
-			<canvas id="votesChartFourthQ" height="250px" width="1100px"></canvas>
-			
+			<canvas id="votesChartFirstQ" height="280px" width="1400px"></canvas>
+			<canvas id="votesChartSecondQ" height="280px" width="1400px"></canvas>
+			<canvas id="votesChartThirdQ" height="280px" width="1400px"></canvas>
+			<canvas id="votesChartFourthQ" height="280px" width="1400px"></canvas>
 		</div>
 
 		<div id="footer"><hr />&copy; Antonio Prcela. All rights reserved.</div>
