@@ -364,6 +364,8 @@ $(document).ready(function() {
 
 					//var currDate = moment().format('L');
 					
+					selected_date;
+
 					var weekStart = moment().startOf('isoWeek').format('YYYY-MM-DD');
 					var weekEnd = moment().endOf('isoWeek').format('YYYY-MM-DD');
 
