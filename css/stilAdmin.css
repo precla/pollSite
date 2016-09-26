@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+html * {
+	cursor: url(../images/cursor.gif), default;
+}
+
 body {
 	font-family: Arial, sans-serif;
 	margin: 0 auto;
