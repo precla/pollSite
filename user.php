@@ -2,7 +2,7 @@
 <html lang="hr">
 
 	<head>
-		<title>Adria Gastro - admin panel</title>
+		<title>Adria Gastro - user panel</title>
 		<meta http-equiv="Content-Type" content="text/html;charset='utf-8'" />
 		<link rel="shortcut icon" href="./images/favicon.ico" />
 		<link rel="stylesheet" type="text/css" href="./css/stilUser.css" />

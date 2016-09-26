@@ -319,7 +319,7 @@ $(document).ready(function() {
 						labels: ["1", "2", "3", "4", "5"],
 						datasets: [
 							{
-								label: "Ukupan broj ocjena",
+								label: "Ukupan broj ocjena za odabrani datum",
 								backgroundColor: backgroundColorSet,
 								borderColor: borderColorSet,
 								pointBackgroundColor: "rgba(179, 181, 198, 1)",
@@ -361,49 +361,66 @@ $(document).ready(function() {
 				// q_one_m	q_two_m	 q_three_m 	q_four_m 	q_one_q   q_two_q 	q_three_q 	q_four_q 	q_one_y 	q_two_y 	q_three_y 	q_four_y
 				// 2.9",	"3",	 "3.8",		"3.9",		"2.3",    "2.3",	"3.5",		"3.7",		"1.7",		"3.1",		"3.3",		"3.3"
 				if(targetVal){
-
-					//var currDate = moment().format('L');
 					
-					selected_date;
-
-					var weekStart = moment().startOf('isoWeek').format('YYYY-MM-DD');
-					var weekEnd = moment().endOf('isoWeek').format('YYYY-MM-DD');
-
 					var tWeekValArrayAvg = [];
 					var tMonthValArrayAvg = [];
 					var tQuarterValArrayAvg = [];
 					var tYearValArrayAvg = [];
 
+					var currentWeekNumber = moment(selected_date, "DD-MM-YYYY").isoWeek();
+
+					var weekStart = moment().startOf('isoWeek');
+					var weekEnd = moment().endOf('isoWeek');
+
+					weekStart = weekStart.subtract(moment(weekStart, "YYYY-MM-DD").isoWeek() - currentWeekNumber, 'weeks').format('L');
+					weekEnd = weekEnd.subtract(moment(weekEnd, "YYYY-MM-DD").isoWeek() - currentWeekNumber, 'weeks').format('L');
+
 					var url_get_target_votes = './db/get_votes_mt_target_avg.php';
-					var getting = $.get(url_get_target_votes, { mt_id: selected_value_mt, date_start: weekStart, date_end: weekEnd });
+					var getting = $.get(url_get_target_votes, { mt_id: selected_value_mt, date_start: weekStart, date_end: weekEnd, curr_date: selected_date });
 
 					getting.done(function(data){
 						var targetAverageValues = $.parseJSON(data);
 
+						// any value that has a null means it has no data for that range
 						// from 0 to 3 is for week
-						tWeekValArrayAvg[0] = parseFloat(targetAverageValues[0]);
-						tWeekValArrayAvg[1] = parseFloat(targetAverageValues[1]);
-						tWeekValArrayAvg[2] = parseFloat(targetAverageValues[2]);
-						tWeekValArrayAvg[3] = parseFloat(targetAverageValues[3]);
+						if(targetAverageValues[0]){
+							tWeekValArrayAvg[0] = parseFloat(targetAverageValues[0]);
+							tWeekValArrayAvg[1] = parseFloat(targetAverageValues[1]);
+							tWeekValArrayAvg[2] = parseFloat(targetAverageValues[2]);
+							tWeekValArrayAvg[3] = parseFloat(targetAverageValues[3]);
+						} else {
+							tWeekValArrayAvg[0] = tWeekValArrayAvg[1] = tWeekValArrayAvg[2] = tWeekValArrayAvg[3] = 'NV';
+						}
 
 						// from 4 to 7 is for month
-						tMonthValArrayAvg[0] = parseFloat(targetAverageValues[4]);
-						tMonthValArrayAvg[1] = parseFloat(targetAverageValues[5]);
-						tMonthValArrayAvg[2] = parseFloat(targetAverageValues[6]);
-						tMonthValArrayAvg[3] = parseFloat(targetAverageValues[7]);
+						if(targetAverageValues[0]){
+							tMonthValArrayAvg[0] = parseFloat(targetAverageValues[4]);
+							tMonthValArrayAvg[1] = parseFloat(targetAverageValues[5]);
+							tMonthValArrayAvg[2] = parseFloat(targetAverageValues[6]);
+							tMonthValArrayAvg[3] = parseFloat(targetAverageValues[7]);
+						} else {
+							tMonthValArrayAvg[0] = tMonthValArrayAvg[1] = tMonthValArrayAvg[2] = tMonthValArrayAvg[3] = 'NV';
+						}
 
 						// from 8 to 11 is for quarter
-						tQuarterValArrayAvg[0] = parseFloat(targetAverageValues[8]);
-						tQuarterValArrayAvg[1] = parseFloat(targetAverageValues[9]);
-						tQuarterValArrayAvg[2] = parseFloat(targetAverageValues[10]);
-						tQuarterValArrayAvg[3] = parseFloat(targetAverageValues[11]);
+						if(targetAverageValues[0]){
+							tQuarterValArrayAvg[0] = parseFloat(targetAverageValues[8]);
+							tQuarterValArrayAvg[1] = parseFloat(targetAverageValues[9]);
+							tQuarterValArrayAvg[2] = parseFloat(targetAverageValues[10]);
+							tQuarterValArrayAvg[3] = parseFloat(targetAverageValues[11]);
+						} else {
+							tQuarterValArrayAvg[0] = tQuarterValArrayAvg[1] = tQuarterValArrayAvg[2] = tQuarterValArrayAvg[3] = 'NV';
+						}
 
 						// from 12 to 15 is for year
-						tYearValArrayAvg[0] = parseFloat(targetAverageValues[12]);
-						tYearValArrayAvg[1] = parseFloat(targetAverageValues[13]);
-						tYearValArrayAvg[2] = parseFloat(targetAverageValues[14]);
-						tYearValArrayAvg[3] = parseFloat(targetAverageValues[15]);
-
+						if(targetAverageValues[0]){
+							tYearValArrayAvg[0] = parseFloat(targetAverageValues[12]);
+							tYearValArrayAvg[1] = parseFloat(targetAverageValues[13]);
+							tYearValArrayAvg[2] = parseFloat(targetAverageValues[14]);
+							tYearValArrayAvg[3] = parseFloat(targetAverageValues[15]);
+						} else {
+							tYearValArrayAvg[0] = tYearValArrayAvg[1] = tYearValArrayAvg[2] = tYearValArrayAvg[3] = 'NV';
+						}
 					});
 
 					var i = 0;
@@ -412,41 +429,41 @@ $(document).ready(function() {
 						// week (+1)
 						$("#targets_w").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
 	
-						if(tWeekValArrayAvg[i] < parseFloat(targetVal[i+1])) {
-							$("#targets_w").append('<div id="redTxt">' + tWeekValArrayAvg[i] + '</div>'
+						if(tWeekValArrayAvg[i].toFixed(2) < parseFloat(targetVal[i+1])) {
+							$("#targets_w").append('<div id="redTxt">' + tWeekValArrayAvg[i].toFixed(2) + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+1]) + '</div>');
 						} else {
-							$("#targets_w").append('<div id="greenTxt">' + tWeekValArrayAvg[i] + '</div>'
+							$("#targets_w").append('<div id="greenTxt">' + tWeekValArrayAvg[i].toFixed(2) + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+1]) + '</div>');
 						}
 
 						// month (+5)
 						$("#targets_m").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
-						if(tMonthValArrayAvg[i] < parseFloat(targetVal[i+5])) {
-							$("#targets_m").append('<div id="redTxt">' + tMonthValArrayAvg[i] + '</div>'
+						if(tMonthValArrayAvg[i].toFixed(2) < parseFloat(targetVal[i+5])) {
+							$("#targets_m").append('<div id="redTxt">' + tMonthValArrayAvg[i].toFixed(2) + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+5]) + '</div>');
 						} else {
-							$("#targets_m").append('<div id="greenTxt">' + tMonthValArrayAvg[i] + '</div>'
+							$("#targets_m").append('<div id="greenTxt">' + tMonthValArrayAvg[i].toFixed(2) + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+5]) + '</div>');
 						}
 
 						// quarter (+9)
 						$("#targets_q").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
-						if(tQuarterValArrayAvg[i] < parseFloat(targetVal[i+9])) {
-							$("#targets_q").append('<div id="redTxt">' + tQuarterValArrayAvg[i] + '</div>'
+						if(tQuarterValArrayAvg[i].toFixed(2) < parseFloat(targetVal[i+9])) {
+							$("#targets_q").append('<div id="redTxt">' + tQuarterValArrayAvg[i].toFixed(2) + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+9]) + '</div>');
 						} else {
-							$("#targets_q").append('<div id="greenTxt">' + tQuarterValArrayAvg[i] + '</div>'
+							$("#targets_q").append('<div id="greenTxt">' + tQuarterValArrayAvg[i].toFixed(2) + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+5]) + '</div>');
 						}
 
 						// year (+13)
 						$("#targets_y").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
-						if(tYearValArrayAvg[i] < parseFloat(targetVal[i+13])) {
-							$("#targets_y").append('<div id="redTxt">' + tYearValArrayAvg[i] + '</div>'
+						if(tYearValArrayAvg[i].toFixed(2) < parseFloat(targetVal[i+13])) {
+							$("#targets_y").append('<div id="redTxt">' + tYearValArrayAvg[i].toFixed(2) + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+13]) + '</div>');
 						} else {
-							$("#targets_y").append('<div id="greenTxt">' + tYearValArrayAvg[i] + '</div>'
+							$("#targets_y").append('<div id="greenTxt">' + tYearValArrayAvg[i].toFixed(2) + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+13]) + '</div>');
 						}
 						i++;
