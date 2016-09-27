@@ -102,6 +102,8 @@
 					</a>
 				</div>
 				<hr />
+				<h3><a id="getXmlLink" target="_blank" href="./php_excel.php">Zahtjev Excela</a></h3>
+				<hr />
 				<h3><a id="setTargetLink" target="_blank" href="./targets.php">Postavljanje targeta</a></h3>
 			</fieldset>
 		</div>
