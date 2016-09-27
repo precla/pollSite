@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+html * {
+	cursor: url(../images/cursor.gif), default;
+}
+
+body {
+	margin: 0 auto;
+	width: 880px;
+	font-family: Arial, sans-serif;
+}
+
+#goBack {
+	font-size: large;
+	color: #0000AA;
+	font-weight: bold; 
+}
+
+h1, h2, h3, p {
+	color: #C59D5F;
+}
+
+h2 {
+	font-size: medium;
+}
+
+p {
+	font-size: large;
+}
+
+#xml_functions {
+	display: flex;
+	font-size: medium;
+}
+
+.xml-box-admin {
+	text-align: center;
+	margin: 0 auto;
+}
+
+/* Footer */
+#footer {
+	clear: left;
+	color: #CCCCCC;
+	text-align: center;
+	padding-top: 2%;
+}
+
+hr {
+	border-top: 1px #EEEEEE;
+}
