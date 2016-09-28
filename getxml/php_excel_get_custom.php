@@ -179,7 +179,7 @@
             $query = "SELECT AVG(q_one) from votes
                         WHERE mt_id = '". $mt_s ."'
                         AND vote_date >= '". $start_quarter ."'
-                        AND vote_date <= '". $end_quarter ."'";
+                        AND vote_date < '". $end_quarter ."'";
 
             $result = mysqli_query($connection, $query);
 
@@ -189,7 +189,7 @@
             $query = "SELECT AVG(q_two) from votes
                         WHERE mt_id = '". $mt_s ."'
                         AND vote_date >= '". $start_quarter ."'
-                        AND vote_date <= '". $end_quarter ."'";
+                        AND vote_date < '". $end_quarter ."'";
             
             $result = mysqli_query($connection, $query);
 
@@ -199,7 +199,7 @@
             $query = "SELECT AVG(q_three) from votes
                         WHERE mt_id = '". $mt_s ."'
                         AND vote_date >= '". $start_quarter ."'
-                        AND vote_date <= '". $end_quarter ."'";
+                        AND vote_date < '". $end_quarter ."'";
             $result = mysqli_query($connection, $query);
 
             $avgThree = mysqli_fetch_row($result);
@@ -208,7 +208,7 @@
             $query = "SELECT AVG(q_four) from votes
                         WHERE mt_id = '". $mt_s ."'
                         AND vote_date >= '". $start_quarter ."'
-                        AND vote_date <= '". $end_quarter ."'";
+                        AND vote_date < '". $end_quarter ."'";
             $result = mysqli_query($connection, $query);
 
             $avgFour = mysqli_fetch_row($result);

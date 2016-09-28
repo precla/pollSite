@@ -42,12 +42,12 @@ fieldset {
 #admin_functions {
 	display: flex;
 	font-size: medium;
+	margin-left: 22%;
 }
 
 #mt-choice-box-admin {
 	width: 450px;
 	text-align: center;
-    margin: 0 auto;
 }
 
 #mt-add-box-admin {
@@ -56,6 +56,7 @@ fieldset {
 }
 
 #extern-functions-box-admin {
+	width: 300px;
 	text-align: center;
 }
 

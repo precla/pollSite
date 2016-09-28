@@ -1,3 +1,5 @@
+jQuery.ajaxSetup({async:false});
+
 var adsImages = dataArray = [];
 
 $(document).ready(function() {
@@ -79,7 +81,12 @@ $(document).ready(function() {
 				}
 			);
 			// reset radio buttons
-			$('input[type="radio"]').prop('checked', false);
+			$('#input[type="radio"]').prop('checked', false);
+
+			$('#radio1_3').prop('checked', true);
+			$('#radio2_3').prop('checked', true);
+			$('#radio3_3').prop('checked', true);
+			$('#radio4_3').prop('checked', true);
 		} else {
 			alert('Niste odabrali sve ocjene.\nMolimo ponovite Vaš odabir.');
 		}

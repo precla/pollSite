@@ -29,6 +29,12 @@
 					<button class="submit_button_graph" type="submit">Potvrdi odabir</button>
 				</div>
 			</fieldset>
+
+			<fieldset id="extern-functions-box-admin">
+				<h3>Dohvat podataka u excel (XML) file:</h3>
+				<h3><a id="getXmlLink" target="_blank" href="./xls.php">Zahtjev Excela</a></h3>
+			</fieldset>
+
 		</div>
 
 		<div hidden id="infoTarget">
