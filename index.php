@@ -67,71 +67,87 @@
 			<img id="adsImg" src="./ads/ag_catering_logo.png"/>
 		</div>
 
-		<div hidden id="voting_div">
+		<div id="voting_div">
 			<div id="question_one">
 				<h2>Koliko ste zadovoljni uslugom restorana?</h2>
 				<form action="">
-					<label class="label_item" for="radio1_1"> <img src="./images/rating_1.png"></label>
 					<input type="radio" class="radio_item" value="1" name="up_vote" id="radio1_1"/>
-					<label class="label_item" for="radio1_2"> <img src="./images/rating_2.png"></label>
+					<label class="label_item" for="radio1_1"> <img src="./images/rating_1.png"></label>
+
 					<input type="radio" class="radio_item" value="2" name="up_vote" id="radio1_2"/>
-					<label class="label_item" for="radio1_3"> <img src="./images/rating_3.png"></label>
+					<label class="label_item" for="radio1_2"> <img src="./images/rating_2.png"></label>
+
 					<input type="radio" class="radio_item" value="3" name="up_vote" id="radio1_3" checked="checked"/>
-					<label class="label_item" for="radio1_4"> <img src="./images/rating_4.png"></label>
+					<label class="label_item" for="radio1_3"> <img src="./images/rating_3.png"></label>
+
 					<input type="radio" class="radio_item" value="4" name="up_vote" id="radio1_4"/>
-					<label class="label_item" for="radio1_5"> <img src="./images/rating_5.png"></label>
+					<label class="label_item" for="radio1_4"> <img src="./images/rating_4.png"></label>
+
 					<input type="radio" class="radio_item" value="5" name="up_vote" id="radio1_5"/>
+					<label class="label_item" for="radio1_5"> <img src="./images/rating_5.png"></label>
 				</form>
 			</div>
 			
 			<div id="question_two">
 				<h2>Koliko ste zadovoljni kvalitetom ponude?</h2>
 				<form action="">
-					<label class="label_item" for="radio2_1"> <img src="./images/rating_1.png"></label>
 					<input type="radio" class="radio_item" value="1" name="low_vote" id="radio2_1"/>
-					<label class="label_item" for="radio2_2"> <img src="./images/rating_2.png"></label>
+					<label class="label_item" for="radio2_1"> <img src="./images/rating_1.png"></label>
+
 					<input type="radio" class="radio_item" value="2" name="low_vote" id="radio2_2"/>
-					<label class="label_item" for="radio2_3"> <img src="./images/rating_3.png"></label>
+					<label class="label_item" for="radio2_2"> <img src="./images/rating_2.png"></label>
+
 					<input type="radio" class="radio_item" value="3" name="low_vote" id="radio2_3" checked="checked"/>
-					<label class="label_item" for="radio2_4"> <img src="./images/rating_4.png"></label>
+					<label class="label_item" for="radio2_3"> <img src="./images/rating_3.png"></label>
+					
 					<input type="radio" class="radio_item" value="4" name="low_vote" id="radio2_4"/>
-					<label class="label_item" for="radio2_5"> <img src="./images/rating_5.png"></label>
+					<label class="label_item" for="radio2_4"> <img src="./images/rating_4.png"></label>
+
 					<input type="radio" class="radio_item" value="5" name="low_vote" id="radio2_5"/>
+					<label class="label_item" for="radio2_5"> <img src="./images/rating_5.png"></label>
 				</form>
 			</div>
 
 			<div id="question_three">
 				<h2>Koliko ste zadovoljni raznovrsnošću ponude?</h2>
 				<form action="">
-					<label class="label_item" for="radio3_1"> <img src="./images/rating_1.png"></label>
 					<input type="radio" class="radio_item" value="1" name="low_vote" id="radio3_1"/>
-					<label class="label_item" for="radio3_2"> <img src="./images/rating_2.png"></label>
+					<label class="label_item" for="radio3_1"> <img src="./images/rating_1.png"></label>
+					
 					<input type="radio" class="radio_item" value="2" name="low_vote" id="radio3_2"/>
-					<label class="label_item" for="radio3_3"> <img src="./images/rating_3.png"></label>
+					<label class="label_item" for="radio3_2"> <img src="./images/rating_2.png"></label>
+					
 					<input type="radio" class="radio_item" value="3" name="low_vote" id="radio3_3" checked="checked"/>
-					<label class="label_item" for="radio3_4"> <img src="./images/rating_4.png"></label>
+					<label class="label_item" for="radio3_3"> <img src="./images/rating_3.png"></label>
+					
 					<input type="radio" class="radio_item" value="4" name="low_vote" id="radio3_4"/>
-					<label class="label_item" for="radio3_5"> <img src="./images/rating_5.png"></label>
+					<label class="label_item" for="radio3_4"> <img src="./images/rating_4.png"></label>
+					
 					<input type="radio" class="radio_item" value="5" name="low_vote" id="radio3_5"/>
+					<label class="label_item" for="radio3_5"> <img src="./images/rating_5.png"></label>
 				</form>
 			</div>
 
 			<div id="question_four">
 				<h2 id="custom_question"></h2>
 				<form action="">
-					<label class="label_item" for="radio4_1"> <img src="./images/rating_1.png"></label>
 					<input type="radio" class="radio_item" value="1" name="low_vote" id="radio4_1"/>
-					<label class="label_item" for="radio4_2"> <img src="./images/rating_2.png"></label>
+					<label class="label_item" for="radio4_1"> <img src="./images/rating_1.png"></label>
+					
 					<input type="radio" class="radio_item" value="2" name="low_vote" id="radio4_2"/>
-					<label class="label_item" for="radio4_3"> <img src="./images/rating_3.png"></label>
+					<label class="label_item" for="radio4_2"> <img src="./images/rating_2.png"></label>
+					
 					<input type="radio" class="radio_item" value="3" name="low_vote" id="radio4_3" checked="checked"/>
-					<label class="label_item" for="radio4_4"> <img src="./images/rating_4.png"></label>
+					<label class="label_item" for="radio4_3"> <img src="./images/rating_3.png"></label>
+					
 					<input type="radio" class="radio_item" value="4" name="low_vote" id="radio4_4"/>
-					<label class="label_item" for="radio4_5"> <img src="./images/rating_5.png"></label>
+					<label class="label_item" for="radio4_4"> <img src="./images/rating_4.png"></label>
+					
 					<input type="radio" class="radio_item" value="5" name="low_vote" id="radio4_5"/>
+					<label class="label_item" for="radio4_5"> <img src="./images/rating_5.png"></label>
 				</form>
 			</div>
-			
+
 			<button class="submit_vote" type="submit">Pošalji</button>
 		</div>
 		<br />
