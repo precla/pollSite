@@ -64,19 +64,16 @@ $(document).ready(function() {
 			// insert vote into database
 			var sendUrl = './db/send_vote.php';
 
+			var w = window.open('./thanks.php?MT=' + selected_value_mt, '');
+			w.focus();
+			setTimeout(function() {w.close();}, 4000);
+
 			$.post( sendUrl, { mt_id: selected_value_mt, question_one: sel_q_one,
 								question_two: sel_q_two, question_three: sel_q_three,
 								question_four: sel_q_four, custom_q_txt: loadedQuestion } )
 				.done(function (data) {
 					if(data == 'Failed to connect to MySQL'){
 						alert('Nažalost Vaš glas nije zabilježen. SQL greska 100.');
-					} else if (data) {
-						// open new notification window and close it after 3.3 sec
-						var w = window.open('./thanks.php?MT=' + selected_value_mt, '');
-						w.focus();
-						setTimeout(function() {w.close();}, 4000);
-					} else {
-						alert('Nažalost Vaš glas nije zabilježen, pokušajte ponovo ili se obratite djelatniku.');
 					}
 				}
 			);
