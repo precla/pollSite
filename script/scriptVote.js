@@ -60,33 +60,29 @@ $(document).ready(function() {
 		var sel_q_three = $("#question_three input[type='radio']:checked").val()
 		var sel_q_four = $("#question_four input[type='radio']:checked").val();
 
-		if (sel_q_one && sel_q_two && sel_q_three && sel_q_four) {
-			// insert vote into database
-			var sendUrl = './db/send_vote.php';
+		// insert vote into database
+		var sendUrl = './db/send_vote.php';
 
-			var w = window.open('./thanks.php?MT=' + selected_value_mt, '');
-			w.focus();
-			setTimeout(function() {w.close();}, 4000);
+		var w = window.open('./thanks.php?MT=' + selected_value_mt, '');
+		w.focus();
+		setTimeout(function() {w.close();}, 4000);
 
-			$.post( sendUrl, { mt_id: selected_value_mt, question_one: sel_q_one,
-								question_two: sel_q_two, question_three: sel_q_three,
-								question_four: sel_q_four, custom_q_txt: loadedQuestion } )
-				.done(function (data) {
-					if(data == 'Failed to connect to MySQL'){
-						alert('Nažalost Vaš glas nije zabilježen. SQL greska 100.');
-					}
+		$.post( sendUrl, { mt_id: selected_value_mt, question_one: sel_q_one,
+							question_two: sel_q_two, question_three: sel_q_three,
+							question_four: sel_q_four, custom_q_txt: loadedQuestion } )
+			.done(function (data) {
+				if(data == 'Failed to connect to MySQL'){
+					alert('Nažalost Vaš glas nije zabilježen. SQL greska 100.');
 				}
-			);
-			// reset radio buttons
-			$('#input[type="radio"]').prop('checked', false);
+			}
+		);
+		// reset radio buttons
+		$('#input[type="radio"]').prop('checked', false);
 
-			$('#radio1_3').prop('checked', true);
-			$('#radio2_3').prop('checked', true);
-			$('#radio3_3').prop('checked', true);
-			$('#radio4_3').prop('checked', true);
-		} else {
-			alert('Niste odabrali sve ocjene.\nMolimo ponovite Vaš odabir.');
-		}
+		$('#radio1_3').prop('checked', true);
+		$('#radio2_3').prop('checked', true);
+		$('#radio3_3').prop('checked', true);
+		$('#radio4_3').prop('checked', true);
 	});
 
 });

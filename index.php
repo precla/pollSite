@@ -67,7 +67,7 @@
 			<img id="adsImg" src="./ads/ag_catering_logo.png"/>
 		</div>
 
-		<div id="voting_div">
+		<div hidden id="voting_div">
 			<div id="question_one">
 				<h2>Koliko ste zadovoljni uslugom restorana?</h2>
 				<form action="">
