@@ -13,7 +13,7 @@ $(document).ready(function() {
 		dateFormat: 'dd-mm-yy'
 	});
 
-	document.getElementById('datepicker').value = moment().format("D-MM-YYYY");;
+	document.getElementById('datepicker').value = moment().format("D-MM-YYYY");
 
 	$('.show_settings').on('click', function() {
 		if( $('.show_settings').html() == 'Sakrij postavke' ){
