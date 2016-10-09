@@ -9,7 +9,7 @@
 		exit();
 	}
 
-    $chosenMonth = mysqli_real_escape_string($connection, $_GET['month']);
+    $chosenYear = mysqli_real_escape_string($connection, $_GET['year']);
 
     // get all MT and their names
     $query = "SELECT mt_id_key, mt_name FROM mt";
@@ -22,7 +22,7 @@
 		array_push($mt_list, $row[0] . " - " . $row[1]);
 	}
 
-	$curr_date = date("Y-m-d", strtotime('1-'.$chosenMonth) );
+	$curr_date = date("Y-m-d", strtotime('1-1-'.$chosenYear) );
 
 	// First day of the month.
 	$firstDayMonth = date('Y-m-01', strtotime($curr_date));

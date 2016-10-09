@@ -9,8 +9,18 @@
 		exit();
 	}
 
+    // get all MT and their names
+    $query = "SELECT mt_id_key, mt_name FROM mt";
+	
+	$result = mysqli_query($connection, $query);
+    $mt_list = array();
+
+	while ( $row = mysqli_fetch_row($result) ) {
+        // print($row[0] . " " . $row[1] );
+		array_push($mt_list, $row[0] . " - " . $row[1]);
+	}
+
     $chosenDay = mysqli_real_escape_string($connection, $_GET['day']);
-    $chosenMt = mysqli_real_escape_string($connection, $_GET['mt_id']);
 
     $chosenDay = date("Y-m-d", strtotime($chosenDay));
 
@@ -34,46 +44,48 @@
     $exporter->addRow(array( " ", "MT:", "Prosječna ocjena I. pitanja:", "Prosječna ocjena II. pitanja:",
                             "Prosječna ocjena III. pitanja:", "Prosječna ocjena IV. pitanja:" ));
     
-
     $exporter->addRow( array($months[$i]) );
+    foreach ($mt_list as $mt){
+        $mt_s = substr($mt, 0, 4);
+        // avg for question one
+        $query = "SELECT AVG(q_one) from votes
+                    WHERE mt_id = '". $mt_s ."'
+                    AND vote_date = '". $chosenDay ."'";
 
-    // avg for question one
-    $query = "SELECT AVG(q_one) from votes
-                WHERE mt_id = '". $chosenMt ."'
-                AND vote_date = '". $chosenDay ."'";
+        $result = mysqli_query($connection, $query);
 
-    $result = mysqli_query($connection, $query);
+        $avgOne = mysqli_fetch_row($result);
 
-    $avgOne = mysqli_fetch_row($result);
+        // avg for question two
+        $query = "SELECT AVG(q_two) from votes
+                    WHERE mt_id = '". $mt_s ."'
+                    AND vote_date = '". $chosenDay ."'";
+        
+        $result = mysqli_query($connection, $query);
 
-    // avg for question two
-    $query = "SELECT AVG(q_two) from votes
-                WHERE mt_id = '". $chosenMt ."'
-                AND vote_date = '". $chosenDay ."'";
-    
-    $result = mysqli_query($connection, $query);
+        $avgTwo = mysqli_fetch_row($result);
 
-    $avgTwo = mysqli_fetch_row($result);
+        // avg for question three
+        $query = "SELECT AVG(q_three) from votes
+                    WHERE mt_id = '". $mt_s ."'
+                    AND vote_date = '". $chosenDay ."'";
 
-    // avg for question three
-    $query = "SELECT AVG(q_three) from votes
-                WHERE mt_id = '". $chosenMt ."'
-                AND vote_date = '". $chosenDay ."'";
+        $result = mysqli_query($connection, $query);
 
-    $result = mysqli_query($connection, $query);
+        $avgThree = mysqli_fetch_row($result);
 
-    $avgThree = mysqli_fetch_row($result);
+        // avg for question four
+        $query = "SELECT AVG(q_four) from votes
+                    WHERE mt_id = '". $mt_s ."'
+                    AND vote_date = '". $chosenDay ."'";
 
-    // avg for question four
-    $query = "SELECT AVG(q_four) from votes
-                WHERE mt_id = '". $chosenMt ."'
-                AND vote_date = '". $chosenDay ."'";
+        $result = mysqli_query($connection, $query);
 
-    $result = mysqli_query($connection, $query);
+        $avgFour = mysqli_fetch_row($result);
 
-    $avgFour = mysqli_fetch_row($result);
+        $exporter->addRow( array( "", json_encode($mt_s), $avgOne[0], $avgTwo[0], $avgThree[0], $avgFour[0] ) );
 
-    $exporter->addRow( array( "", json_encode($chosenMt), $avgOne[0], $avgTwo[0], $avgThree[0], $avgFour[0] ) );
+    }
 
     // writes the footer, flushes remaining data to browser:
     $exporter->finalize();

@@ -44,13 +44,29 @@ $(document).ready(function() {
 
 	var selected_value_mt;
 
+	$('#mtCheckbox').on('click', function() {
+		if($("#mtCheckbox").is(':checked')){
+			$("#showMtChoice").hide();
+		} else {
+			$("#showMtChoice").show();
+		}
+	});
+
 	// get xml
 
 	$('#submitButtonDay').on('click', function() {
-		selected_value_mt = $('#mt_list').val();
+		
 		var inputDay = $('#chosenDateD').val();
+		selected_value_mt = $('#mt_list').val();
+		var url_get_xml;
+
 		if(inputDay){
-			var url_get_xml = './getxml/php_excel_get_custom_day.php?day=' + inputDay + '&mt_id=' + selected_value_mt;
+			if(checkboxMtChecked()){
+				url_get_xml = './getxml/php_excel_get_custom_day.php?day=' + inputDay;
+			} else {
+				url_get_xml = './getxml/php_excel_get_custom_day_mt.php?day=' + inputDay + '&mt_id=' + selected_value_mt;
+			}
+
 			window.open(url_get_xml);
 		} else {
 			alert("Niste ispravno unijeli dan!");
@@ -58,10 +74,18 @@ $(document).ready(function() {
 	});
 
 	$('#submitButtonMonth').on('click', function() {
+
+		var inputMonth = $('#inputTextM').val();
 		selected_value_mt = $('#mt_list').val();
-		var inputMonth = $('#chosenDateM').val();
+		var url_get_xml;
+
 		if(inputMonth){
-			var url_get_xml = './getxml/php_excel_get_custom_month.php?month=' + inputMonth + '&mt_id=' + selected_value_mt;;
+			if(checkboxMtChecked()){
+				url_get_xml = './getxml/php_excel_get_custom_month.php?year=' + inputMonth;
+			} else {
+				url_get_xml = './getxml/php_excel_get_custom_month_mt.php?year=' + inputMonth + '&mt_id=' + selected_value_mt;
+			}
+
 			window.open(url_get_xml);
 		} else {
 			alert("Niste ispravno unijeli mjesec!");
@@ -69,10 +93,18 @@ $(document).ready(function() {
 	});
 
 	$('#submitButtonQuarter').on('click', function() {
-		selected_value_mt = $('#mt_list').val();
+
 		var inputQuarter = $("#quarterChoice input[type='radio']:checked").val();
+		selected_value_mt = $('#mt_list').val();
+		var url_get_xml;
+
 		if(inputQuarter){
-			var url_get_xml = './getxml/php_excel_get_custom_quarter.php?quarter=' + inputQuarter + '&mt_id=' + selected_value_mt;;
+			if(checkboxMtChecked()){
+				url_get_xml = './getxml/php_excel_get_custom_quarter.php?quarter=' + inputQuarter;
+			} else {
+				url_get_xml = './getxml/php_excel_get_custom_quarter_mt.php?quarter=' + inputQuarter + '&mt_id=' + selected_value_mt;
+			}
+
 			window.open(url_get_xml);
 		} else {
 			alert("Niste odabrali kvartal!");
@@ -80,10 +112,18 @@ $(document).ready(function() {
 	});
 
 	$('#submitButtonYear').on('click', function() {
-		selected_value_mt = $('#mt_list').val();
+
 		var inputYear = $('#inputTextY').val();
+		selected_value_mt = $('#mt_list').val();
+		var url_get_xml;
+
 		if(inputYear){
-			var url_get_xml = './getxml/php_excel_get_custom.php?year=' + inputYear + '&mt_id=' + selected_value_mt;;
+			if(checkboxMtChecked()){
+				url_get_xml = './getxml/php_excel_get_custom.php?year=' + inputYear;
+			} else {
+				url_get_xml = './getxml/php_excel_get_custom_mt.php?year=' + inputYear + '&mt_id=' + selected_value_mt;
+			}
+
 			window.open(url_get_xml);
 		} else {
 			alert("Niste ispravno unijeli godinu!");
@@ -96,4 +136,14 @@ $(document).ready(function() {
 function readMtList(){
 	url_read_mt_list = './db/read_mt_list.php';
 	$('.mt_list_admin').load(url_read_mt_list);
+}
+
+function checkboxMtChecked(){
+	if(document.getElementById('mtCheckbox').checked){
+		selected_value_mt = "";
+		return true;
+	} else {
+		selected_value_mt = $('#mt_list').val();
+		return false;
+	}
 }
