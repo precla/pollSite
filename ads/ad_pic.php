@@ -58,7 +58,7 @@
 
                 <form action="" method="POST" enctype="multipart/form-data">
                     <input type="file" name="image" /></br>
-                    <input type="submit" value="Postavi sliku"></input>
+                    <input type="submit" value="Set image"></input>
                 </form>
                 <p>Supported formats: JPG, JPEG, PNG</br>
                 Resolution has to be 740 x 300 pixels (w x h)</br>
