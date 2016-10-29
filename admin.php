@@ -33,8 +33,8 @@
 			<!-- Add new MT -->
 			<fieldset id="mt-add-box-admin">
 				<h3>Add new place:</h2>
-				<h3>Place ID:</br><input type="number" id="new_mt_id" placeholder="npr.: 2540"></h3>
-				<h3>Place name:</br><input type="text" id="new_mt_name" placeholder="npr.: Restoran Heinzelova"></h3>
+				<h3>Place ID:</br><input type="number" id="new_mt_id" placeholder="npr.: 4411"></h3>
+				<h3>Place name:</br><input type="text" id="new_mt_name" placeholder="npr.: Restaurant FamilyFun"></h3>
 				<button class="submit_button_add_mt" type="submit">Add place</button>
 			</fieldset>
 
@@ -98,7 +98,7 @@
 				<div id="ad-upload-content">
 					<h3><a target="_blank" href="./ads/ad_pic.php">Settings for ads</a></h3>
 					<a target="_blank" href="./ads/ad_pic.php">
-						<img src="./images/ad_icon.png" width="100" height="100" border="0" alt="Postavke za Reklame">
+						<img src="./images/ad_icon.png" width="100" height="100" border="0" alt="Settings for ads">
 					</a>
 				</div>
 				<hr />

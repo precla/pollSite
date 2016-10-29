@@ -52,12 +52,12 @@
 
     // Quarter
     $exporter->addRow( array("") );
-    $exporter->addRow( array("Kvartali") );
+    $exporter->addRow( array("Quarter") );
 
     $quarter = array( "Q1", "Q2", "Q3", "Q4" );
 
-    $exporter->addRow(array( " ", "MT:", "Prosječna ocjena I. pitanja:", "Prosječna ocjena II. pitanja:",
-                            "Prosječna ocjena III. pitanja:", "Prosječna ocjena IV. pitanja:" ));
+    $exporter->addRow(array( " ", "ID:", "Average vote 1st question:", "Average vote 2nd question:",
+                            "Average vote 3rd question:", "Average vote 4th question:" ));
     
     for ($i = 0; $i < 4; $i++){
         $exporter->addRow( array($quarter[$i]) );

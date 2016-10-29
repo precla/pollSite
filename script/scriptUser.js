@@ -16,11 +16,11 @@ $(document).ready(function() {
 	document.getElementById('datepicker').value = moment().format("D-MM-YYYY");;
 
 	$('.show_settings').on('click', function() {
-		if( $('.show_settings').html() == 'Sakrij postavke' ){
-			$('.show_settings').text('Prikaži postavke');
+		if( $('.show_settings').html() == 'Hide settings' ){
+			$('.show_settings').text('Show settings');
 			$('#admin_functions').hide("blind");
 		} else {
-			$('.show_settings').text('Sakrij postavke');
+			$('.show_settings').text('Hide settings');
 			$('#admin_functions').show("blind");
 		}
 	});
@@ -71,7 +71,7 @@ $(document).ready(function() {
 
 		posting.done(function( data ) {
 			if(data.length < 3){
-				alert('Nema podataka za taj datum!');
+				alert('No data for that date!');
 				exit();
 			}
 
@@ -178,7 +178,7 @@ $(document).ready(function() {
 				data: {
 					labels: voteTime,
 					datasets: [{
-						label: 'Prosječna ocjena u tom trenutku',
+						label: 'Average rating in that moment',
 						data: votesQone,
 						backgroundColor: backgroundColorSet,
 						borderColor: borderColorSet,
@@ -189,7 +189,7 @@ $(document).ready(function() {
 					responsive: false,
 					title: {
 						display: true,
-						text: 'Prosječna ocjena za "Koliko ste zadovoljni uslugom restorana?": ' + votesAverage[0]
+						text: 'Average rating for "How are you satisifed with the quality?": ' + votesAverage[0]
 					},
 					scales: {
 						yAxes: [{
@@ -207,7 +207,7 @@ $(document).ready(function() {
 				data: {
 					labels: voteTime,
 					datasets: [{
-						label: 'Prosječna ocjena u tom trenutku',
+						label: 'Average rating in that moment',
 						data: votesQtwo,
 						backgroundColor: backgroundColorSet,
 						borderColor: borderColorSet,
@@ -218,7 +218,7 @@ $(document).ready(function() {
 					responsive: false,
 					title: {
 						display: true,
-						text: 'Prosječna ocjena za "Koliko ste zadovoljni kvalitetom ponude?": ' + votesAverage[1]
+						text: 'Average rating for "How satisfied are you with the choice?": ' + votesAverage[1]
 					},
 					scales: {
 						yAxes: [{
@@ -236,7 +236,7 @@ $(document).ready(function() {
 				data: {
 					labels: voteTime,
 					datasets: [{
-						label: 'Prosječna ocjena u tom trenutku',
+						label: 'Average rating in that moment',
 						data: votesQthree,
 						backgroundColor: backgroundColorSet,
 						borderColor: borderColorSet,
@@ -247,7 +247,7 @@ $(document).ready(function() {
 					responsive: false,
 					title: {
 						display: true,
-						text: 'Prosječna ocjena za "Koliko ste zadovoljni raznovrsnošću ponude?": ' + votesAverage[2]
+						text: 'Average rating for "How do you like the new design of our place?": ' + votesAverage[2]
 					},
 					scales: {
 						yAxes: [{
@@ -270,7 +270,7 @@ $(document).ready(function() {
 					data: {
 						labels: voteTime,
 						datasets: [{
-							label: 'Prosječna ocjena u tom trenutku',
+							label: 'Average rating in that moment',
 							data: votesQfour,
 							backgroundColor: backgroundColorSet,
 						borderColor: borderColorSet,
@@ -281,7 +281,7 @@ $(document).ready(function() {
 						responsive: false,
 						title: {
 							display: true,
-							text: 'Prosječna ocjena za "' + data + '": ' + votesAverage[3]
+							text: 'Average rating for "' + data + '": ' + votesAverage[3]
 						},
 						scales: {
 							yAxes: [{
@@ -301,7 +301,7 @@ $(document).ready(function() {
 			posting.done(function( data ) {
 
 				if(data.length < 5){
-					alert('Nema podataka za taj datum!');
+					alert('No data for that Date!');
 					exit();
 				}
 				votesTotalAmount = [];
@@ -319,7 +319,7 @@ $(document).ready(function() {
 						labels: ["1", "2", "3", "4", "5"],
 						datasets: [
 							{
-								label: "Ukupan broj ocjena za odabrani datum",
+								label: "Total number of votes for that Date",
 								backgroundColor: backgroundColorSet,
 								borderColor: borderColorSet,
 								pointBackgroundColor: "rgba(179, 181, 198, 1)",
@@ -427,7 +427,7 @@ $(document).ready(function() {
 					while(i < 4){
 
 						// week (+1)
-						$("#targets_w").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
+						$("#targets_w").append('<p>' + parseInt(i+1) + '. question:&nbsp</p>');
 	
 						if(tWeekValArrayAvg[i].toFixed(2) < parseFloat(targetVal[i+1])) {
 							$("#targets_w").append('<div id="redTxt">' + tWeekValArrayAvg[i].toFixed(2) + '</div>'
@@ -438,7 +438,7 @@ $(document).ready(function() {
 						}
 
 						// month (+5)
-						$("#targets_m").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
+						$("#targets_m").append('<p>' + parseInt(i+1) + '. question:&nbsp</p>');
 						if(tMonthValArrayAvg[i].toFixed(2) < parseFloat(targetVal[i+5])) {
 							$("#targets_m").append('<div id="redTxt">' + tMonthValArrayAvg[i].toFixed(2) + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+5]) + '</div>');
@@ -448,7 +448,7 @@ $(document).ready(function() {
 						}
 
 						// quarter (+9)
-						$("#targets_q").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
+						$("#targets_q").append('<p>' + parseInt(i+1) + '. question:&nbsp</p>');
 						if(tQuarterValArrayAvg[i].toFixed(2) < parseFloat(targetVal[i+9])) {
 							$("#targets_q").append('<div id="redTxt">' + tQuarterValArrayAvg[i].toFixed(2) + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+9]) + '</div>');
@@ -458,7 +458,7 @@ $(document).ready(function() {
 						}
 
 						// year (+13)
-						$("#targets_y").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
+						$("#targets_y").append('<p>' + parseInt(i+1) + '. question:&nbsp</p>');
 						if(tYearValArrayAvg[i].toFixed(2) < parseFloat(targetVal[i+13])) {
 							$("#targets_y").append('<div id="redTxt">' + tYearValArrayAvg[i].toFixed(2) + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+13]) + '</div>');

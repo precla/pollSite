@@ -24,7 +24,7 @@ function readAdsImageList(){
 				adsImages[i] = dataArray[i];
 				// adsImages[i] = 'ads/' + adsImages[i].slice(2);
 				// ./ag_logo.png
-				adsImages[i] = '<div id="pic_preview_b"><p>Naziv slike: ' + adsImages[i].slice(2)
+				adsImages[i] = '<div id="pic_preview_b"><p>Picture filename: ' + adsImages[i].slice(2)
 								+ '</p><img src="' + adsImages[i] +'"/></div>';
 			}
 			$('#pics_preview').html(adsImages);
@@ -47,11 +47,11 @@ $(document).ready(function() {
 		$.post(url_delete_ad_image, { adName : adImageName })
 			.done(function (data) {
 				if(data){
-					alert('Slika: "' + adImageName + '" , je uspjesno izbrisana!');
+					alert('Image: "' + adImageName + '" , has been deleted!');
 					readAdsList();
 					readAdsImageList();
 				} else {
-					alert('Greška kod brisanja slike. Ponovite brisanje ili kontaktirajte administratora!');
+					alert('Error deleting the pic, please contact the admin!');
 				}
 			}
 		);

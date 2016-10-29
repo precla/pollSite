@@ -72,7 +72,7 @@ $(document).ready(function() {
 							question_four: sel_q_four, custom_q_txt: loadedQuestion } )
 			.done(function (data) {
 				if(data == 'Failed to connect to MySQL'){
-					alert('Nažalost Vaš glas nije zabilježen. SQL greska 100.');
+					alert('Unfortunately your vote has not been recorded. Contact the admin please.');
 				}
 			}
 		);

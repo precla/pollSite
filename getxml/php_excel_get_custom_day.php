@@ -41,8 +41,8 @@
     // Months
     $exporter->addRow( array($chosenDay) );
 
-    $exporter->addRow(array( " ", "MT:", "Prosječna ocjena I. pitanja:", "Prosječna ocjena II. pitanja:",
-                            "Prosječna ocjena III. pitanja:", "Prosječna ocjena IV. pitanja:" ));
+    $exporter->addRow(array( " ", "ID:", "Average vote 1st question:", "Average vote 2nd question:",
+                            "Average vote 3rd question:", "Average vote 4th question:" ));
     
     $exporter->addRow( array($months[$i]) );
     foreach ($mt_list as $mt){

@@ -70,7 +70,7 @@ $(document).ready(function() {
 			posting.done(function( data ) {
                 if (data != false ) {
                     $("#set-target-values").hide("blind");
-                    alert("Vrijednosti uspješno postavljene.");
+                    alert("Values have been successfully set.");
                     
                     // enable drop down and button
                     $("#mt_list").prop('disabled', false);
@@ -78,7 +78,7 @@ $(document).ready(function() {
                 }
             });
         } else {
-            alert("Neispravne vrijednosti! Molimo provjerite postavljene vrijednosti.");
+            alert("Invalid values, please check and repeat.");
         }
     });
 

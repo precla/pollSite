@@ -69,7 +69,7 @@ $(document).ready(function() {
 
 			window.open(url_get_xml);
 		} else {
-			alert("Niste ispravno unijeli dan!");
+			alert("Day not valid!");
 		}
 	});
 
@@ -88,7 +88,7 @@ $(document).ready(function() {
 
 			window.open(url_get_xml);
 		} else {
-			alert("Niste ispravno unijeli mjesec!");
+			alert("Month not valid!");
 		}
 	});
 
@@ -107,7 +107,7 @@ $(document).ready(function() {
 
 			window.open(url_get_xml);
 		} else {
-			alert("Niste odabrali kvartal!");
+			alert("You did not choose a quarter!");
 		}
 	});
 
@@ -126,7 +126,7 @@ $(document).ready(function() {
 
 			window.open(url_get_xml);
 		} else {
-			alert("Niste ispravno unijeli godinu!");
+			alert("Not a proper year!");
 		}
 	});
 

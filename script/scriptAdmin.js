@@ -16,11 +16,11 @@ $(document).ready(function() {
 	document.getElementById('datepicker').value = moment().format("D-MM-YYYY");
 
 	$('.show_settings').on('click', function() {
-		if( $('.show_settings').html() == 'Sakrij postavke' ){
-			$('.show_settings').text('Prikaži postavke');
+		if( $('.show_settings').html() == 'Hide settings' ){
+			$('.show_settings').text('Show settings');
 			$('#admin_functions').hide("blind");
 		} else {
-			$('.show_settings').text('Sakrij postavke');
+			$('.show_settings').text('Hide settings');
 			$('#admin_functions').show("blind");
 		}
 	});
@@ -71,7 +71,7 @@ $(document).ready(function() {
 
 		posting.done(function( data ) {
 			if(data.length < 3){
-				alert('Nema podataka za taj datum!');
+				alert('No data for that date!');
 				exit();
 			}
 
@@ -178,7 +178,7 @@ $(document).ready(function() {
 				data: {
 					labels: voteTime,
 					datasets: [{
-						label: 'Prosječna ocjena u tom trenutku',
+						label: 'Average rating in that moment',
 						data: votesQone,
 						backgroundColor: backgroundColorSet,
 						borderColor: borderColorSet,
@@ -189,7 +189,7 @@ $(document).ready(function() {
 					responsive: false,
 					title: {
 						display: true,
-						text: 'Prosječna ocjena za "Koliko ste zadovoljni uslugom restorana?": ' + votesAverage[0]
+						text: 'Average rating for "How are you satisifed with the quality?": ' + votesAverage[0]
 					},
 					scales: {
 						yAxes: [{
@@ -207,7 +207,7 @@ $(document).ready(function() {
 				data: {
 					labels: voteTime,
 					datasets: [{
-						label: 'Prosječna ocjena u tom trenutku',
+						label: 'Average rating in that moment',
 						data: votesQtwo,
 						backgroundColor: backgroundColorSet,
 						borderColor: borderColorSet,
@@ -218,7 +218,7 @@ $(document).ready(function() {
 					responsive: false,
 					title: {
 						display: true,
-						text: 'Prosječna ocjena za "Koliko ste zadovoljni kvalitetom ponude?": ' + votesAverage[1]
+						text: 'Average rating for "How satisfied are you with the choice?": ' + votesAverage[1]
 					},
 					scales: {
 						yAxes: [{
@@ -236,7 +236,7 @@ $(document).ready(function() {
 				data: {
 					labels: voteTime,
 					datasets: [{
-						label: 'Prosječna ocjena u tom trenutku',
+						label: 'Average rating in that moment',
 						data: votesQthree,
 						backgroundColor: backgroundColorSet,
 						borderColor: borderColorSet,
@@ -247,7 +247,7 @@ $(document).ready(function() {
 					responsive: false,
 					title: {
 						display: true,
-						text: 'Prosječna ocjena za "Koliko ste zadovoljni raznovrsnošću ponude?": ' + votesAverage[2]
+						text: 'Average rating for "How do you like the new design of our place?": ' + votesAverage[2]
 					},
 					scales: {
 						yAxes: [{
@@ -270,7 +270,7 @@ $(document).ready(function() {
 					data: {
 						labels: voteTime,
 						datasets: [{
-							label: 'Prosječna ocjena u tom trenutku',
+							label: 'Average rating in that moment',
 							data: votesQfour,
 							backgroundColor: backgroundColorSet,
 						borderColor: borderColorSet,
@@ -281,7 +281,7 @@ $(document).ready(function() {
 						responsive: false,
 						title: {
 							display: true,
-							text: 'Prosječna ocjena za "' + data + '": ' + votesAverage[3]
+							text: 'Average rating for "' + data + '": ' + votesAverage[3]
 						},
 						scales: {
 							yAxes: [{
@@ -301,7 +301,7 @@ $(document).ready(function() {
 			posting.done(function( data ) {
 
 				if(data.length < 5){
-					alert('Nema podataka za taj datum!');
+					alert('No data for that Date!');
 					exit();
 				}
 				votesTotalAmount = [];
@@ -319,7 +319,7 @@ $(document).ready(function() {
 						labels: ["1", "2", "3", "4", "5"],
 						datasets: [
 							{
-								label: "Ukupan broj ocjena za odabrani datum",
+								label: "Total number of votes for that Date",
 								backgroundColor: backgroundColorSet,
 								borderColor: borderColorSet,
 								pointBackgroundColor: "rgba(179, 181, 198, 1)",
@@ -427,7 +427,7 @@ $(document).ready(function() {
 					while(i < 4){
 
 						// week (+1)
-						$("#targets_w").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
+						$("#targets_w").append('<p>' + parseInt(i+1) + '. question:&nbsp</p>');
 	
 						if(tWeekValArrayAvg[i].toFixed(2) < parseFloat(targetVal[i+1])) {
 							$("#targets_w").append('<div id="redTxt">' + tWeekValArrayAvg[i].toFixed(2) + '</div>'
@@ -438,7 +438,7 @@ $(document).ready(function() {
 						}
 
 						// month (+5)
-						$("#targets_m").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
+						$("#targets_m").append('<p>' + parseInt(i+1) + '. question:&nbsp</p>');
 						if(tMonthValArrayAvg[i].toFixed(2) < parseFloat(targetVal[i+5])) {
 							$("#targets_m").append('<div id="redTxt">' + tMonthValArrayAvg[i].toFixed(2) + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+5]) + '</div>');
@@ -448,7 +448,7 @@ $(document).ready(function() {
 						}
 
 						// quarter (+9)
-						$("#targets_q").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
+						$("#targets_q").append('<p>' + parseInt(i+1) + '. question:&nbsp</p>');
 						if(tQuarterValArrayAvg[i].toFixed(2) < parseFloat(targetVal[i+9])) {
 							$("#targets_q").append('<div id="redTxt">' + tQuarterValArrayAvg[i].toFixed(2) + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+9]) + '</div>');
@@ -458,7 +458,7 @@ $(document).ready(function() {
 						}
 
 						// year (+13)
-						$("#targets_y").append('<p>' + parseInt(i+1) + '. pitanje:&nbsp</p>');
+						$("#targets_y").append('<p>' + parseInt(i+1) + '. question:&nbsp</p>');
 						if(tYearValArrayAvg[i].toFixed(2) < parseFloat(targetVal[i+13])) {
 							$("#targets_y").append('<div id="redTxt">' + tYearValArrayAvg[i].toFixed(2) + '</div>'
 									+ '<div id="blueTxt">&nbsp/ ' + parseFloat(targetVal[i+13]) + '</div>');
@@ -483,20 +483,20 @@ $(document).ready(function() {
 		var new_mt_id = $('#new_mt_id').val();
 		var new_mt_name = $('#new_mt_name').val();
 		var questionTxt = $('#q_list option:selected').html();
-		questionTxt = 'Ocijenite ambijent restorana';
+		questionTxt = 'Rate the ambient of the place';
 		
 		if( !$.isNumeric(new_mt_id) ){
-			alert('Unesni "Broj MT-a" nije broj, uklonite znakove i unesite samo brojeve!');
+			alert('Inserted "ID" is not a number, please remove non-numeric characters!');
 		} else if(new_mt_id && new_mt_name){
 			var url_set_new_mt = './db/add_mt.php';
 			$.post(url_set_new_mt, { mt_id_key: new_mt_id, mt_name: new_mt_name, custom_q_text: questionTxt })
 				.done(function (data) {
 					if(data){
-						alert('MT ' + new_mt_id + ' , "' + new_mt_name + '" je uspjesno dodano u bazu!\n'
-								+ 'Četvrto pitanje postavljeno na: ' + questionTxt);
+						alert('ID ' + new_mt_id + ' , "' + new_mt_name + '" has been successfully added into the database!\n'
+								+ 'Fourth question set to: ' + questionTxt);
 						reloadStuff();
 					} else {
-						alert('Greška kod dodavanja MT-a, mozda vec postoji? Ponovite dodavanje ili kontaktirajte administratora!');
+						alert('Error adding ID, does it exist already? Contact the admin!');
 					}
 				}
 			);
@@ -504,7 +504,7 @@ $(document).ready(function() {
 			$('#new_mt_name').val('');
 			
 		} else if( $.isNumeric(new_mt_id) ){
-			alert('Niste unijeli sve potrebne podatke za dodavanje MT-a!');
+			alert('Not all requiered data has been set!');
 		}
 	});
 
@@ -514,15 +514,15 @@ $(document).ready(function() {
 		var url_set_new_question = './db/question_add.php';
 
 		if(new_question.length < 1 || new_question.length > 255){
-			alert('Unos ne smije biti prazan i mora biti manji od 255 znakova.\nMolimo ponovite unos!');
+			alert("Input can't be empty and has to be less than 255 characters.\nPlease repeat!");
 		} else {
 			$.post(url_set_new_question, { question_text : new_question })
 				.done(function (data) {
 					if(data){
 						reloadStuff();
-						alert('Pitanje: "' + new_question + '" , je uspjesno dodano u bazu!');
+						alert('Question: "' + new_question + '" , has been successfully added!');
 					} else {
-						alert('Greška kod dodavanja pitanja.\nPonovite dodavanje ili kontaktirajte administratora!');
+						alert('Error adding question.\nRepeat or contact admin!');
 					}
 				}
 			);
@@ -543,9 +543,9 @@ $(document).ready(function() {
 			.done(function (data) {
 				if(data){
 					reloadStuff();
-					alert('Pitanje: "' + questionTxt + '" , je uspjesno postavljeno za MT ' + mt_id_q + '!');
+					alert('Question: "' + questionTxt + '" , has been successfully set for ID ' + mt_id_q + '!');
 				} else {
-					alert('Greška kod postavljanja pitanja. Ponovite postavljanje ili kontaktirajte administratora!');
+					alert('Error setting the question. Repeat or contact the admin!');
 				}
 			}
 		);
@@ -557,15 +557,15 @@ $(document).ready(function() {
 		var url_set_new_thanks = './db/thanks_add.php';
 
 		if(new_thanks.length < 1 || new_thanks.length > 255){
-			alert('Unos ne smije biti prazan i mora biti manji od 255 znakova.\nMolimo ponovite unos!');
+			alert("Input can't be empty and has to be less than 255 characters.\nPlease repeat!");
 		} else {
 			$.post(url_set_new_thanks, { custom_thanks_text : new_thanks })
 				.done(function (data) {
 					if(data){
 						reloadStuff();
-						alert('Tekst: "' + new_thanks + '" , je uspjesno dodan u bazu!');
+						alert('Tekst: "' + new_thanks + '" , has been succssfully add into the database!');
 					} else {
-						alert('Greška kod dodavanja teksta.\nPonovite dodavanje ili kontaktirajte administratora!');
+						alert('Error adding the info text. Repeat or contact the admin!');
 					}
 				}
 			);
@@ -585,9 +585,9 @@ $(document).ready(function() {
 		$.post(url_set_thanks_mt, { mt_id : mt_id_q, custom_thanks_text : thanksTxt })
 			.done(function (data) {
 				if(data){
-					alert('Tekst: "' + thanksTxt + '" , je uspjesno postavljeno za MT ' + mt_id_q + '!');
+					alert('Tekst: "' + thanksTxt + '" , Has been successfully set for ID ' + mt_id_q + '!');
 				} else {
-					alert('Greška kod postavljanja teksta. Ponovite postavljanje ili kontaktirajte administratora!');
+					alert('Error setting the text. Repeat or contact the admin!');
 				}
 			}
 		);

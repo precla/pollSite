@@ -54,18 +54,18 @@
     $exporter->addRow( array("") );
     $exporter->addRow( array("Mjeseci") );
 
-    $months = array( "Siječanj",
-        "Veljača",
-        "Ožujak",
-        "Travanj",
-        "Svibanj",
-        "Lipanj",
-        "Srpanj",
-        "Kolovoz",
-        "Rujan",
-        "Listopad",
-        "Studeni",
-        "Prosinac"
+    $months = array( 'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July ',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
     );
     $months_en = array(
         'January',
@@ -82,8 +82,8 @@
         'December',
     );
 
-    $exporter->addRow(array( " ", "MT:", "Prosječna ocjena I. pitanja:", "Prosječna ocjena II. pitanja:",
-                            "Prosječna ocjena III. pitanja:", "Prosječna ocjena IV. pitanja:" ));
+    $exporter->addRow(array( " ", "ID:", "Average vote 1st question:", "Average vote 2nd question:",
+                            "Average vote 3rd question:", "Average vote 4th question:" ));
     
     for ($i = 0; $i < 12; $i++){
         $exporter->addRow( array($months[$i]) );
