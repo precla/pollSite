@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hr">
+<html lang="en">
 
 	<head>
 		<title>PollSite</title>
@@ -26,7 +26,7 @@
 			<button class="submit_mt" type="submit">Submit</button>
 		</fieldset>
 		
-		<!-- ads always start with AG logo as first pic -->
+		<!-- ads always start with default logo as first pic -->
 		<div hidden id="ads">
 			<img id="adsImg" src="./ads/default_logo.png"/>
 		</div>
