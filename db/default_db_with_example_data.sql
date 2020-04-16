@@ -36,9 +36,9 @@ CREATE TABLE `custom_questions` (
 -- Dumping data for table `custom_questions`
 --
 
--- INSERT INTO `custom_questions` (`question_id`, `question_text`) VALUES
--- (1, 'Question one?'),
--- (2, 'Question two?');
+INSERT INTO `custom_questions` (`question_id`, `question_text`) VALUES
+(1, 'Question one?'),
+(2, 'Question two?');
 
 -- --------------------------------------------------------
 
@@ -55,8 +55,8 @@ CREATE TABLE `custom_thanks` (
 -- Dumping data for table `custom_thanks`
 --
 
--- INSERT INTO `custom_thanks` (`thanks_id`, `custom_thanks_text`) VALUES
--- (1, 'Random question');
+INSERT INTO `custom_thanks` (`thanks_id`, `custom_thanks_text`) VALUES
+(1, 'Random question');
 
 -- --------------------------------------------------------
 
@@ -75,9 +75,9 @@ CREATE TABLE `mt` (
 -- Dumping data for table `mt`
 --
 
--- INSERT INTO `mt` (`mt_id_key`, `mt_name`, `custom_q_text`, `custom_thanks_text`) VALUES
--- (123, 'Kazika', 'Satisified with choice of beer?', 'Question one?'),
--- (231, 'Beertia', 'Rate the ambient of the place', NULL);
+INSERT INTO `mt` (`mt_id_key`, `mt_name`, `custom_q_text`, `custom_thanks_text`) VALUES
+(123, 'Kazika', 'Satisified with choice of beer?', 'Question one?'),
+(231, 'Beertia', 'Rate the ambient of the place', NULL);
 
 -- --------------------------------------------------------
 
@@ -109,8 +109,8 @@ CREATE TABLE `target_mt` (
 -- Dumping data for table `target_mt`
 --
 
--- INSERT INTO `target_mt` (`mt_id`, `q_one_w`, `q_two_w`, `q_three_w`, `q_four_w`, `q_one_m`, `q_two_m`, `q_three_m`, `q_four_m`, `q_one_q`, `q_two_q`, `q_three_q`, `q_four_q`, `q_one_y`, `q_two_y`, `q_three_y`, `q_four_y`) VALUES
--- (123, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4);
+INSERT INTO `target_mt` (`mt_id`, `q_one_w`, `q_two_w`, `q_three_w`, `q_four_w`, `q_one_m`, `q_two_m`, `q_three_m`, `q_four_m`, `q_one_q`, `q_two_q`, `q_three_q`, `q_four_q`, `q_one_y`, `q_two_y`, `q_three_y`, `q_four_y`) VALUES
+(123, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -133,20 +133,20 @@ CREATE TABLE `votes` (
 -- Dumping data for table `votes`
 --
 
--- INSERT INTO `votes` (`mt_id`, `q_one`, `q_two`, `q_three`, `q_four`, `vote_date`, `vote_time`, `custom_q_txt`) VALUES
--- (123, 4, 2, 2, 2, '2020-04-16', '13:43:53', 'Rate the ambient of the place'),
--- (123, 4, 5, 4, 4, '2020-04-16', '13:44:17', 'Rate the ambient of the place'),
--- (123, 2, 4, 2, 4, '2020-04-16', '13:44:26', 'Rate the ambient of the place'),
--- (123, 5, 5, 5, 5, '2020-04-16', '13:44:35', 'Rate the ambient of the place'),
--- (123, 2, 3, 2, 3, '2020-04-16', '13:44:45', 'Rate the ambient of the place'),
--- (123, 5, 5, 5, 5, '2020-04-16', '13:45:24', 'Rate the ambient of the place'),
--- (123, 5, 4, 5, 4, '2020-04-16', '13:45:36', 'Rate the ambient of the place'),
--- (123, 5, 5, 5, 5, '2020-04-16', '13:45:42', 'Rate the ambient of the place'),
--- (123, 1, 1, 1, 1, '2020-04-16', '13:45:55', 'Rate the ambient of the place'),
--- (123, 1, 5, 2, 4, '2020-04-16', '13:46:04', 'Rate the ambient of the place'),
--- (123, 4, 4, 4, 4, '2020-04-16', '13:46:13', 'Rate the ambient of the place'),
--- (123, 3, 4, 1, 2, '2020-04-16', '13:51:39', 'Rate the ambient of the place'),
--- (123, 4, 4, 2, 3, '2020-04-16', '14:16:12', 'Rate the ambient of the place');
+INSERT INTO `votes` (`mt_id`, `q_one`, `q_two`, `q_three`, `q_four`, `vote_date`, `vote_time`, `custom_q_txt`) VALUES
+(123, 4, 2, 2, 2, '2020-04-16', '13:43:53', 'Rate the ambient of the place'),
+(123, 4, 5, 4, 4, '2020-04-16', '13:44:17', 'Rate the ambient of the place'),
+(123, 2, 4, 2, 4, '2020-04-16', '13:44:26', 'Rate the ambient of the place'),
+(123, 5, 5, 5, 5, '2020-04-16', '13:44:35', 'Rate the ambient of the place'),
+(123, 2, 3, 2, 3, '2020-04-16', '13:44:45', 'Rate the ambient of the place'),
+(123, 5, 5, 5, 5, '2020-04-16', '13:45:24', 'Rate the ambient of the place'),
+(123, 5, 4, 5, 4, '2020-04-16', '13:45:36', 'Rate the ambient of the place'),
+(123, 5, 5, 5, 5, '2020-04-16', '13:45:42', 'Rate the ambient of the place'),
+(123, 1, 1, 1, 1, '2020-04-16', '13:45:55', 'Rate the ambient of the place'),
+(123, 1, 5, 2, 4, '2020-04-16', '13:46:04', 'Rate the ambient of the place'),
+(123, 4, 4, 4, 4, '2020-04-16', '13:46:13', 'Rate the ambient of the place'),
+(123, 3, 4, 1, 2, '2020-04-16', '13:51:39', 'Rate the ambient of the place'),
+(123, 4, 4, 2, 3, '2020-04-16', '14:16:12', 'Rate the ambient of the place');
 
 --
 -- Indexes for dumped tables
