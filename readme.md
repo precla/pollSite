@@ -22,7 +22,7 @@ External dependencies (included in this repo):
 Setup:
  - check and edit `db/config_EXAMPLE.php` and save as `config.php`
  - create new database with the same name as set in `$db_name` in `config.php`
- - load `db/default_db.sql` into the newly created database
+ - load `db/default_db.sql` into the newly created database (or `default_db_with_example_data.sql` to have some data upfront to see how the program behaves)
  
 Preview:
 
