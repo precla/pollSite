@@ -19,7 +19,11 @@ External dependencies (included in this repo):
  - moment.js
  - php-export-data by Eli Dickinson, http://github.com/elidickinson/php-export-data
 
-
+Setup:
+ - check and edit `db/config_EXAMPLE.php` and save as `config.php`
+ - create new database with the same name as set in `$db_name` in `config.php`
+ - load `db/default_db.sql` into the newly created database
+ 
 Preview:
 
 ![Alt text](/example_pic/preview-1.png?raw=true "Admin panel")

@@ -5,6 +5,6 @@
 	$db_uid = "";
 	// PHP variable to store the password
 	$db_pass = "";
-	// PHP variable to store the Database name  
-	$db_name = "";
+	// PHP variable to store the Database name
+	$db_name = "pollSite";
 ?>
