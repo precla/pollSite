@@ -26,8 +26,10 @@ Setup:
  
 Preview:
 
-![Alt text](/example_pic/preview-1.png?raw=true "Admin panel")
+![Video preview](/example_pic/preview-video.webm?raw=true "Video preview")
 
-![Alt text](/example_pic/preview-2.png?raw=true "Vote index page")
+![Admin panel](/example_pic/preview-1.png?raw=true "Admin panel")
 
-![Alt text](/example_pic/preview-3.png?raw=true "Vote visible for user")
+![Vote index page](/example_pic/preview-2.png?raw=true "Vote index page")
+
+![Vote visible for user](/example_pic/preview-3.png?raw=true "Vote visible for user")
